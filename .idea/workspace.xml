@@ -39,11 +39,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+=======
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.48582995">
               <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
 =======
             <state vertical-scroll-proportion="0.20802377">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+>>>>>>> 43834f165550adeeb48f7e2050fcade01dd7741c
               <folding />
             </state>
           </provider>
@@ -832,9 +837,14 @@
 =======
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+=======
         <state vertical-scroll-proportion="0.20802377">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
 >>>>>>> 8daee60d3ec5561cc6d6e505a8e83e1fb9626ee0
+>>>>>>> 43834f165550adeeb48f7e2050fcade01dd7741c
           <folding />
         </state>
       </provider>
