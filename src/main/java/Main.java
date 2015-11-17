@@ -2,22 +2,16 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main ( String[] args ) {
-<<<<<<< HEAD
 
-        System.out.println("asdf");
-        System.out.println("asdf");
-        System.out.println("asdf");
 
-        ArrayList<String> list = new ArrayList<String>;
+        Data db = new Data();
 
-        list.add("Math");
-        list.add("English");
+        db.saveData();
 
-        System.out.println(list.get(0));
-        list.
-=======
-        Manager.start();
->>>>>>> e10ed0a2832f63b78646e3a2968373a9aa706229
+        System.out.println(StudentList.getInstance().slist.get(0).name);
+
+        //Manager.start();
+
     }
 }
 

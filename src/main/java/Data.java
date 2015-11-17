@@ -2,24 +2,16 @@ import java.util.ArrayList;
 
 public class Data {
 
-    Data ( int studentID, String name, String major ) {
-        this.studentID = studentID;
-        this.name = name;
-        this.major = major;
+    public Data(){
+
     }
 
-    Data ( int studentID, String name, String major, int age ) {
-
-        this(studentID, name, major );
-        this.age = age;
+    public void saveData(){
+        ArrayList<String> takeclass = new ArrayList<String>();
+        takeclass.add("Math");
+        takeclass.add("English");
+        StudentList.getInstance().slist.add(new Student(20113300, 24, "MS", "CS", takeclass));
     }
-
-
-    int studentID;
-    String name;
-    int age;
-    String major;
-    ArrayList<String> takingClass;
 
 
 }
