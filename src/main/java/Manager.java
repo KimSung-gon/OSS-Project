@@ -13,29 +13,32 @@ public class Manager {
             switch ( select ) {
 
                 case 1:
-
+                    Data.getInstance().saveData();
                     break;
+
                 case 2:
-
+                    Data.getInstance().modifyData();
                     break;
+
                 case 3:
-
+                    Data.getInstance().removeData();
                     break;
+
                 case 4:
-
                     break;
+
                 case 5:
-
                     break;
+
                 case 6:
-
                     break;
+
                 case 7:
-
                     break;
+
                 case 8:
-
                     break;
+
                 case 9:
                     return;
 
