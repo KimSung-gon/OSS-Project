@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Manager {
 
     public static void start () {
+
+        showMainMenu();
         Scanner sc = new Scanner( System.in );
 
         while ( true ) {
