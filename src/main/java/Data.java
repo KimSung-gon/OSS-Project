@@ -2,8 +2,15 @@ import java.util.ArrayList;
 
 public class Data {
 
-    public Data(){
+    private static Data datIinstance;
 
+    private Data(){}
+
+    public static Data getInstance(){
+        if(datIinstance == null)
+            datIinstance = new Data();
+
+        return datIinstance;
     }
 
     public void saveData(){
@@ -13,6 +20,13 @@ public class Data {
         StudentList.getInstance().slist.add(new Student(20113300, 24, "MS", "CS", takeclass));
     }
 
+    public void modifyData(){
+
+    }
+
+    public void removeData(){
+
+    }
 
 }
 
