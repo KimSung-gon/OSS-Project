@@ -23,46 +23,4 @@ public class Student {
         student.name = name;
         student.major = major;
     }
-
-    public Student(){}
-
-    public ArrayList<String> getTakingClass() {
-        return takingClass;
-    }
-
-    public void setTakingClass(ArrayList<String> takingClass) {
-        this.takingClass = takingClass;
-    }
-
-    public int getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
 }
