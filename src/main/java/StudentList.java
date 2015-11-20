@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class StudentList {
 
-    private static StudentList instance;
+    private static StudentList slInstance;
     ArrayList<Student> slist;
 
     private StudentList(){
@@ -10,10 +10,10 @@ public class StudentList {
     }
 
     public static StudentList getInstance(){
-        if(instance == null)
-            instance = new StudentList();
+        if(slInstance == null)
+            slInstance = new StudentList();
 
-        return instance;
+        return slInstance;
     }
 
 }
