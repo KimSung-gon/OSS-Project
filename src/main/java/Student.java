@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Student {
 
-    ArrayList<String> takingClass;
     int studentID;
     int age;
     String name;
     String major;
+    ArrayList<String> takingClass;
 
     public Student(int studentID, int age, String name, String major, ArrayList<String> takingClass) {
         this.takingClass = takingClass;
