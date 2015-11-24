@@ -56,22 +56,22 @@ public class Data {
 
     // txt 파일에 slist의 데이터를 써주는 메소드
     public static void saveDataToFile() throws IOException {
-        Writer write = new FileWriter( "studentList.txt" );
+        Writer write = new FileWriter( "studentList.txt", true );
         BufferedWriter bWriter = new BufferedWriter( write );
 
         if (StudentList.getInstance().slist != null ) {
-            bWriter.write("#\n");
+            bWriter.append("#\n");
 
             for ( int i = 0; i < StudentList.getInstance().slist.size(); i ++ ) {
 
-                bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
-                bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
-                bWriter.write(StudentList.getInstance().slist.get(i).name + "\n" );
-                bWriter.write(StudentList.getInstance().slist.get(i).major + "\n" );
+                bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
+                bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
+                bWriter.append(StudentList.getInstance().slist.get(i).name + "\n" );
+                bWriter.append(StudentList.getInstance().slist.get(i).major + "\n" );
 //                bWriter.flush();
 
                 for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++ ) {
-                    bWriter.write(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
+                    bWriter.append(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
                 }
                 bWriter.flush();
             }
