@@ -38,7 +38,7 @@ public class Manager {
                     break;
 
                 case 9:
-                    Data.saveDataToFile();
+                    Data.getInstance().saveDataToFile();
                     return;
 
             }
