@@ -42,6 +42,8 @@ public class Data {
             else
                 break;
         }
+        bReader.close();
+        read.close();
     }
 
     // txt 파일에 slist의 데이터를 써주는 메소드
@@ -61,7 +63,7 @@ public class Data {
                 bWriter.write(StudentList.getInstance().slist.get(i).major + "\n" );
                 bWriter.flush();
 
-                int j = 1;
+                int j = 0;
                 while (StudentList.getInstance().slist.get(j) != null) {
                     bWriter.write(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
                     j++;
@@ -70,6 +72,8 @@ public class Data {
                 i++;
             }
         }
+        bWriter.close();
+        write.close();
     }
 
     // slist에 학생 정보를 저장하는 매소드
