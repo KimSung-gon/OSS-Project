@@ -1,13 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Manager {
 
-    public static void start () {
+    public static void start () throws IOException {
 
-        showMainMenu();
+        Data.loadDataFromFile();
         Scanner sc = new Scanner( System.in );
 
         while ( true ) {
+            showMainMenu();
             int select = sc.nextInt();
 
             switch ( select ) {
@@ -40,6 +42,7 @@ public class Manager {
                     break;
 
                 case 9:
+                    Data.saveDataToFile();
                     return;
 
             }
@@ -62,6 +65,8 @@ public class Manager {
         System.out.printf( "7. 학과에 따른 학생 검색\n" );
         System.out.printf( "8. 입학년도에 따른 학생 검색\n" );
         System.out.printf( "9. 프로그램 종료\n" );
+        System.out.printf( "==================================\n" );
+        System.out.printf( "선택 : " );
     }
 
 }
