@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +40,6 @@ public class Data {
                         temp = bReader.readLine();
                     }
                     Student newStudent = new Student(Integer.parseInt(studentID), Integer.parseInt(age), name, major, takingClass);
-//                StudentList.getInstance().slist.add(newStudent);
                     StudentList.getInstance().slist.add(newStudent);
                 } else
                     break;
@@ -68,7 +65,6 @@ public class Data {
                 bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
                 bWriter.append(StudentList.getInstance().slist.get(i).name + "\n" );
                 bWriter.append(StudentList.getInstance().slist.get(i).major + "\n" );
-//                bWriter.flush();
 
                 for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++ ) {
                     bWriter.append(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
