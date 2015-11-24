@@ -53,7 +53,7 @@ public class Data {
             bWriter.write("#\n");
 
             int i = 0;
-            while (StudentList.getInstance().slist != null) {
+            while (i < StudentList.getInstance().slist.size()) {
 
                 bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
                 bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n" );
@@ -61,8 +61,8 @@ public class Data {
                 bWriter.write(StudentList.getInstance().slist.get(i).major + "\n" );
                 bWriter.flush();
 
-                int j = 1;
-                while (StudentList.getInstance().slist.get(j) != null) {
+                int j = 0;
+                while (j < StudentList.getInstance().slist.get(i).takingClass.size()) {
                     bWriter.write(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
                     j++;
                 }
