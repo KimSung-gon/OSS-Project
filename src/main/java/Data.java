@@ -18,36 +18,41 @@ public class Data {
 
     // txt 파일에 있는 데이터를 읽어 slist에 저장시켜주는 메소드
     public static void loadDataFromFile() throws IOException {
-        Reader read = new FileReader("studentList.txt");
-        BufferedReader bReader = new BufferedReader(read);
 
-        String tmp = bReader.readLine();
-        while ( tmp != null && tmp.compareTo( "#" ) != 0 ) {
-            if ( tmp.compareTo( "#" )  != 0 ) {
-                String studentID = bReader.readLine();
+        File f = new File( "studentList.txt" );
+        if ( f.canRead() ) {
+            Reader read = new FileReader("studentList.txt");
+            BufferedReader bReader = new BufferedReader(read);
+            String tmp = bReader.readLine();
+            while (tmp != null && tmp.compareTo("#") != 0) {
+                if (tmp.compareTo("#") != 0) {
+                    String studentID = bReader.readLine();
 
-                if ( studentID == null )
+                    if (studentID == null)
+                        break;
+
+                    String age = bReader.readLine();
+                    String name = bReader.readLine();
+                    String major = bReader.readLine();
+                    ArrayList<String> takingClass = new ArrayList<String>();
+
+                    String temp = bReader.readLine();
+                    while (temp != null && temp.compareTo("#") != 0) {
+                        takingClass.add(temp);
+                        temp = bReader.readLine();
+                    }
+                    Student newStudent = new Student(Integer.parseInt(studentID), Integer.parseInt(age), name, major, takingClass);
+//                StudentList.getInstance().slist.add(newStudent);
+                    StudentList.getInstance().slist.add(newStudent);
+                } else
                     break;
-
-                String age = bReader.readLine();
-                String name = bReader.readLine();
-                String major = bReader.readLine();
-                ArrayList<String> takingClass = new ArrayList<String>();
-
-                String temp = bReader.readLine();
-                while ( temp != null && temp.compareTo( "#" ) != 0 ) {
-                    takingClass.add(temp);
-                    temp = bReader.readLine();
-                }
-                Student newStudent = new Student(Integer.parseInt(studentID), Integer.parseInt(age), name, major, takingClass);
-                StudentList.getInstance().slist.add(newStudent);
             }
-            else
-                break;
-        }
 
-        bReader.close();
-        read.close();
+            bReader.close();
+            read.close();
+        }
+        else
+            f.createNewFile();
     }
 
     // txt 파일에 slist의 데이터를 써주는 메소드
