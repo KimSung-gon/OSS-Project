@@ -5,7 +5,7 @@ public class Manager {
 
     public static void start () throws IOException {
 
-        Data.loadDataFromFile();
+        Data.getInstance().loadDataFromFile();
         Scanner sc = new Scanner( System.in );
 
         while ( true ) {
@@ -13,19 +13,15 @@ public class Manager {
             int select = sc.nextInt();
 
             switch ( select ) {
-
                 case 1:
                     Data.getInstance().saveData();
                     break;
-
                 case 2:
                     Data.getInstance().modifyData();
                     break;
-
                 case 3:
                     Data.getInstance().removeData();
                     break;
-
                 case 4:
                     break;
 
