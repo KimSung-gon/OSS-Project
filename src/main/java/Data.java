@@ -47,7 +47,6 @@ public class Data {
                 } else
                     break;
             }
-
             bReader.close();
             read.close();
         }
@@ -63,22 +62,18 @@ public class Data {
         if (StudentList.getInstance().slist != null ) {
             bWriter.write("#\n");
 
-            int i = 0;
-            while (StudentList.getInstance().slist != null) {
+            for ( int i = 0; i < StudentList.getInstance().slist.size(); i ++ ) {
 
                 bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
-                bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n" );
+                bWriter.write(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
                 bWriter.write(StudentList.getInstance().slist.get(i).name + "\n" );
                 bWriter.write(StudentList.getInstance().slist.get(i).major + "\n" );
-                bWriter.flush();
+//                bWriter.flush();
 
-                int j = 0;
-                while (StudentList.getInstance().slist.get(j) != null) {
+                for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++ ) {
                     bWriter.write(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
-                    j++;
                 }
                 bWriter.flush();
-                i++;
             }
         }
         bWriter.close();
