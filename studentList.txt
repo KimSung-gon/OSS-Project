@@ -1,7 +1,1 @@
-#
-20113300
-24
-Yoon
-Computer
-math
-english
+﻿
