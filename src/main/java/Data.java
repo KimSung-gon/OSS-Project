@@ -54,7 +54,7 @@ public class Data {
 
     // txt 파일에 slist의 데이터를 써주는 메소드
     public static void saveDataToFile() throws IOException {
-        Writer write = new FileWriter( "studentList.txt", true );
+        Writer write = new FileWriter( "studentList.txt" );
         BufferedWriter bWriter = new BufferedWriter( write );
 
         if (StudentList.getInstance().slist != null ) {
@@ -136,7 +136,7 @@ public class Data {
 
         for(i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
             if(StudentList.getInstance().slist.get(i).studentID == studentId) {
-                StudentList.getInstance().slist.remove(studentId);
+                StudentList.getInstance().slist.remove(i);
                 System.out.println("삭제되었습니다.");
                 return;
             }
