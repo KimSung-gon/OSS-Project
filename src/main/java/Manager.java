@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Manager {
@@ -6,9 +6,10 @@ public class Manager {
     public static void start () throws IOException {
 
         Data.getInstance().loadDataFromFile();
-        Scanner sc = new Scanner( System.in );
 
         while ( true ) {
+
+            Scanner sc = new Scanner( System.in );
             showMainMenu();
             int select = sc.nextInt();
 
@@ -64,5 +65,4 @@ public class Manager {
         System.out.printf( "==================================\n" );
         System.out.printf( "선택 : " );
     }
-
 }
