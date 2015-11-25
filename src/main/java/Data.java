@@ -77,9 +77,10 @@ public class Data {
     }
 
     // slist에 학생 정보를 저장하는 매소드
-    public void saveData(){
+    public void saveData() throws IOException {
 
-        Scanner sc = new Scanner( System.in );
+        Reader reader = new InputStreamReader( System.in );
+        BufferedReader kb = new BufferedReader( reader );
 
         ArrayList<String> takeclass = new ArrayList<String>();
         int studentID;
@@ -89,22 +90,22 @@ public class Data {
 
         System.out.println( "========== 1. 데이터 추가 ===========");
         System.out.print("이름 : ");
-        name = sc.next();
+        name = kb.readLine();
 
         System.out.print("학번 : ");
-        studentID = sc.nextInt();
+        studentID = kb.read();
 
         System.out.print("나이 : ");
-        age = sc.nextInt();
+        age = kb.read();
 
         System.out.print("전공 : ");
-        major = sc.next();
+        major = kb.readLine();
 
         System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
         int i = 1;
         while(true){
             System.out.printf("수강중인 과목 %d : ", i );
-            String lecture = sc.next();
+            String lecture = kb.readLine();
             if( lecture.compareTo( "stop" ) == 0 ) {
                 break;
             }
@@ -124,28 +125,26 @@ public class Data {
 
     }
 
-    public void removeData(){
+    public void removeData() throws IOException {
 
-        Scanner sc = new Scanner( System.in );
+        Reader reader = new InputStreamReader( System.in );
+        BufferedReader kb = new BufferedReader( reader );
         int studentId;
         int i;
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-
-        studentId = sc.nextInt();
-
+        studentId = kb.read();
 
         for(i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
-            if(StudentList.getInstance().slist.get(i).studentID == studentId)
-                StudentList.getInstance().slist.remove( studentId );
-
+            if(StudentList.getInstance().slist.get(i).studentID == studentId) {
+                StudentList.getInstance().slist.remove(studentId);
+                System.out.println("삭제되었습니다.");
+                return;
+            }
         }
-
         if(i == StudentList.getInstance().slist.size()+1)
             System.out.println("삭제할 학생이 없습니다.");
-
     }
-
 }
 
 
