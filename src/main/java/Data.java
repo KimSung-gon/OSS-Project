@@ -22,8 +22,9 @@ public class Data {
             Reader read = new FileReader("studentList.txt");
             BufferedReader bReader = new BufferedReader(read);
             String tmp = bReader.readLine();
-            while (tmp != null && tmp.compareTo("#") != 0) {
-                if (tmp.compareTo("#") != 0) {
+
+            while (tmp != null && tmp.compareTo("#") == 0) {
+                if (tmp.compareTo("#") == 0) {
                     String studentID = bReader.readLine();
 
                     if (studentID == null)
@@ -126,13 +127,12 @@ public class Data {
 
     public void removeData() throws IOException {
 
-        Reader reader = new InputStreamReader( System.in );
-        BufferedReader kb = new BufferedReader( reader );
+        Scanner sc = new Scanner( System.in );
         int studentId;
         int i;
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        studentId = kb.read();
+        studentId = sc.nextInt();
 
         for(i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
             if(StudentList.getInstance().slist.get(i).studentID == studentId) {
