@@ -57,10 +57,10 @@ public class Data {
         BufferedWriter bWriter = new BufferedWriter( write );
 
         if (StudentList.getInstance().slist != null ) {
-            bWriter.append("#\n");
 
             for ( int i = 0; i < StudentList.getInstance().slist.size(); i ++ ) {
 
+                bWriter.append("#\n");
                 bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
                 bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
                 bWriter.append(StudentList.getInstance().slist.get(i).name + "\n" );
@@ -79,8 +79,7 @@ public class Data {
     // slist에 학생 정보를 저장하는 매소드
     public void saveData() throws IOException {
 
-        Reader reader = new InputStreamReader( System.in );
-        BufferedReader kb = new BufferedReader( reader );
+        Scanner sc = new Scanner( System.in );
 
         ArrayList<String> takeclass = new ArrayList<String>();
         int studentID;
@@ -90,22 +89,22 @@ public class Data {
 
         System.out.println( "========== 1. 데이터 추가 ===========");
         System.out.print("이름 : ");
-        name = kb.readLine();
+        name = sc.next();
 
         System.out.print("학번 : ");
-        studentID = kb.read();
+        studentID = sc.nextInt();
 
         System.out.print("나이 : ");
-        age = kb.read();
+        age = sc.nextInt();
 
         System.out.print("전공 : ");
-        major = kb.readLine();
+        major = sc.next();
 
         System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
         int i = 1;
         while(true){
             System.out.printf("수강중인 과목 %d : ", i );
-            String lecture = kb.readLine();
+            String lecture = sc.next();
             if( lecture.compareTo( "stop" ) == 0 ) {
                 break;
             }
