@@ -24,20 +24,20 @@ public class Manager {
                     Data.getInstance().removeData();
                     break;
                 case 4:
+                    Searching.searchDataOfStudent();
                     break;
-
                 case 5:
+                    Searching.showAllData();
                     break;
-
                 case 6:
+                    Searching.searchDataOfSubject();
                     break;
-
                 case 7:
+                    Searching.searchDataOfMajor();
                     break;
-
                 case 8:
+                    Searching.searchDataOfYear();
                     break;
-
                 case 9:
                     Data.getInstance().saveDataToFile();
                     return;

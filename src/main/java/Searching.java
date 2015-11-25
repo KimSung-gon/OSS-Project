@@ -1,5 +1,27 @@
+import java.io.IOException;
+
+
 public class Searching {
 
+    public static void searchDataOfStudent(){
+
+    }
+
+    public static void showAllData(){
+
+    }
+
+    public static void searchDataOfSubject(){
+
+    }
+
+    public static void searchDataOfMajor(){
+
+    }
+
+    public static void searchDataOfYear(){
+
+    }
 }
 // TODO 학번을 통한 개인정보 상세 검색
 // TODO 저장된 학생 전체 정보에 대한 개요, 통계 출력
