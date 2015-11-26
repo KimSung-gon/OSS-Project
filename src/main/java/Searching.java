@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Searching {
 
-    public static void searchDataOfStudent(){
+    public static void searchDataOfStudent(){                   // 학번을 통한 정보 검색
         Scanner sc = new Scanner(System.in);
         int studentId = sc.nextInt();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
@@ -29,7 +29,7 @@ public class Searching {
             }
     }
 
-    public static void showAllData(){
+    public static void showAllData(){                   // 전체 학생수, 모든 학생데이터 출력
         for(int i=0; i<StudentList.getInstance().slist.size(); i++){
             System.out.println("총 학생 수 : " + StudentList.getInstance().slist.size());
             System.out.println();
@@ -42,7 +42,7 @@ public class Searching {
         }
     }
 
-    public static void searchDataOfSubject(){
+    public static void searchDataOfSubject(){                   // 과목을 통한 정보 검색
 
         Scanner sc = new Scanner(System.in);
         String subject = sc.next();
@@ -54,7 +54,7 @@ public class Searching {
                 }
     }
 
-    public static void searchDataOfMajor(){
+    public static void searchDataOfMajor(){                 // 전공을 통한 정보 검색
 
         Scanner sc = new Scanner(System.in);
         String major = sc.next();
@@ -65,7 +65,7 @@ public class Searching {
             }
     }
 
-    public static void searchDataOfYear(){
+    public static void searchDataOfYear(){                  // 학번을 통한 정보 검색
 
         Scanner sc = new Scanner(System.in);
         int year = sc.nextInt();
