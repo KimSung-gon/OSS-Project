@@ -14,7 +14,6 @@ public class Data {
         return datIinstance;
     }
 
-    // txt 파일에 있는 데이터를 읽어 slist에 저장시켜주는 메소드
     public static void loadDataFromFile() throws IOException {
 
         File f = new File( "studentList.txt" );
@@ -52,7 +51,6 @@ public class Data {
             f.createNewFile();
     }
 
-    // txt 파일에 slist의 데이터를 써주는 메소드
     public static void saveDataToFile() throws IOException {
         Writer write = new FileWriter( "studentList.txt" );
         BufferedWriter bWriter = new BufferedWriter( write );
@@ -77,7 +75,6 @@ public class Data {
         write.close();
     }
 
-    // slist에 학생 정보를 저장하는 매소드
     public void saveData() throws IOException {
 
         Scanner sc = new Scanner( System.in );
@@ -116,15 +113,79 @@ public class Data {
         }
         StudentList.getInstance().slist.add(new Student(studentID, age, name, major, takeclass));
         System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1 );
-
     }
 
     public void modifyData(){
 
+       // TODO 학번 입력받아서 학생 정보 받아온 뒤에 원하는 정보 수정
+        Scanner sc = new Scanner(System.in);
+        int studentId;
+        int changeDataNumber;
+        System.out.print("변경 할 학번을 입력하세요 : ");
+        studentId = sc.nextInt();
 
+        while (true) {
+            for (int i = 0; i < StudentList.getInstance().slist.size(); i++) {
+                if (StudentList.getInstance().slist.get(i).studentID == studentId) {
+                    System.out.println("====================");
+                    System.out.println("데이터 수정");
+                    System.out.println("1.나이");
+                    System.out.println("2.이름");
+                    System.out.println("3.전공");
+                    System.out.println("4.수강중인 수업");
+                    System.out.println("5.나가기");
+                    System.out.print("수정할 데이터 번호를 입력하세요 : ");
 
+                    changeDataNumber = sc.nextInt();
 
+                    if (changeDataNumber == 1) {
+                        System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(i).age);
+                        System.out.print("변경할 나이를 입력하세요 : ");
+                        int ageToChange = sc.nextInt();
+                        StudentList.getInstance().slist.get(i).age = ageToChange;
+                    }
 
+                    if (changeDataNumber == 2) {
+                        System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(i).name);
+                        System.out.print("변경할 이름을 입력하세요 : ");
+                        String nameToChange = sc.next();
+                        StudentList.getInstance().slist.get(i).name = nameToChange;
+                    }
+
+                    if (changeDataNumber == 3) {
+                        System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(i).major);
+                        System.out.print("변경할 전공을 입력하세요 : ");
+                        String majorToChange = sc.next();
+                        StudentList.getInstance().slist.get(i).major = majorToChange;
+                    }
+
+                    if (changeDataNumber == 4) {
+                        while (true) {
+                            System.out.println("현재 수강중인 과목 : ");
+                            for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++)
+                                System.out.println(StudentList.getInstance().slist.get(i).takingClass.get(j));
+                            System.out.println("1.추가    2.삭제    3.나가기");
+                            System.out.print("실행 할 번호를 입력하세요 : ");
+                            int addOrRemoveOrModify = sc.nextInt();
+                            if (addOrRemoveOrModify == 1) {
+                                System.out.print("추가 할 과목을 입력하세요 : ");
+                                String addSubject = sc.next();
+                                StudentList.getInstance().slist.get(i).takingClass.add(addSubject);
+                            }
+                            if (addOrRemoveOrModify == 2) {
+                                System.out.print("삭제 할 과목을 입력하세요 : ");
+                                String removeSubject = sc.next();
+                                StudentList.getInstance().slist.get(i).takingClass.remove(removeSubject);
+                            }
+                            if (addOrRemoveOrModify == 3)
+                                return;
+                        }
+                    }
+                    if (changeDataNumber == 5)
+                        return;
+                }
+            }
+        }
     }
 
     public void removeData() throws IOException {
@@ -147,8 +208,3 @@ public class Data {
             System.out.println("삭제할 학생이 없습니다.");
     }
 }
-
-
-// TODO 학생 정보 저장
-// TODO 학생 정보 수정
-// TODO 학생 정보 삭제
