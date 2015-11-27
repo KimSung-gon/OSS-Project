@@ -121,7 +121,9 @@ public class Data {
 
     public void modifyData(){
 
-       // TODO 학번 입력받아서 학생 정보 받아온 뒤에 원하는 정보 수정
+
+
+
 
     }
 
