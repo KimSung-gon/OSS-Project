@@ -87,3 +87,6 @@ public class Searching {
     }
 
 }
+
+// TODO 부모 클래스 만들어서 Data, Searching 클래스에서 공통적으로 사용되는 메소드 따온 뒤에 상속받는 형식으로 리팩토링 요
+// TODO showAllData 학생 정보 단순 나열 > 정보 가공해서 출력하도록 리팩토링 요
