@@ -16,15 +16,12 @@ public class Manager {
             switch ( select ) {
                 case 1:
                     Data.getInstance().saveStudentData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 2:
                     Data.getInstance().modifyStudentData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 3:
                     Data.getInstance().removeStudentData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 4:
                     Searching.searchDataOfStudent();
@@ -42,10 +39,9 @@ public class Manager {
                     Searching.searchDataOfYear();
                     break;
                 case 9:
-                    Data.getInstance().saveDataToFile();
                     return;
-
             }
+            Data.getInstance().saveDataToFile();
         }
     }
 
