@@ -10,14 +10,8 @@ public class Searching {
         Scanner sc = new Scanner(System.in);
         int studentId = sc.nextInt();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
-            if(StudentList.getInstance().slist.get(i).studentID == studentId){
-                System.out.println("학번 : " + StudentList.getInstance().slist.get(i).studentID);
-                System.out.println("나이 : " + StudentList.getInstance().slist.get(i).age);
-                System.out.println("이름 : " + StudentList.getInstance().slist.get(i).name);
-                System.out.println("전공 : " + StudentList.getInstance().slist.get(i).major);
-                for(int j=0; j<StudentList.getInstance().slist.get(i).takingClass.size(); j++)
-                    System.out.println("수강과목 : " + StudentList.getInstance().slist.get(i).takingClass.get(j));
-            }
+            if(StudentList.getInstance().slist.get(i).studentID == studentId)
+                showdata(StudentList.getInstance().slist.get(i));
             else{
                 System.out.println("조회되는 학번이 없습니다.");
                 System.out.println("1.다시입력  2.나가기");
@@ -31,20 +25,24 @@ public class Searching {
             }
     }
 
+    public static void showdata(Student student){
+        System.out.println("학번 : " + student.studentID);
+        System.out.println("나이 : " + student.age);
+        System.out.println("이름 : " + student.name);
+        System.out.println("전공 : " + student.major);
+
+        System.out.println("\n수강중인 과목");
+        for(int j=0; j<student.takingClass.size(); j++)
+            System.out.println("[" + j + "]" + student.takingClass.get(j));
+    }
+
     public static void showAllData(){                   // 전체 학생수, 모든 학생데이터 출력
         Scanner sc = new Scanner(System.in );
 
         for(int i=0; i<StudentList.getInstance().slist.size(); i++){
             System.out.println("총 학생 수 : " + StudentList.getInstance().slist.size());
             System.out.println();
-            System.out.println("학번 : " + StudentList.getInstance().slist.get(i).studentID);
-            System.out.println("나이 : " + StudentList.getInstance().slist.get(i).age);
-            System.out.println("이름 : " + StudentList.getInstance().slist.get(i).name);
-            System.out.println("전공 : " + StudentList.getInstance().slist.get(i).major);
-
-            System.out.println("\n수강중인 과목");
-            for(int j=0; j<StudentList.getInstance().slist.get(i).takingClass.size(); j++)
-                System.out.println("[" + j+1 + "]" + StudentList.getInstance().slist.get(i).takingClass.get(j));
+            showdata(StudentList.getInstance().slist.get(i));
         }
 
         System.out.println("\n메뉴로 돌아가려면 아무 키나 입력하세요.");
