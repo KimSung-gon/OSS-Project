@@ -48,7 +48,7 @@ public class Student {
     public void showTakingClass () {
         System.out.printf( "수강과목\n" );
         for (int i = 0; i < this.takingClass.size(); i ++ ) {
-            System.out.printf("%s", this.takingClass.get(i) );
+            System.out.printf("%s\n", this.takingClass.get(i) );
         }
 
 
