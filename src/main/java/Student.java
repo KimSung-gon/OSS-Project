@@ -44,4 +44,13 @@ public class Student {
 
         takingClass.set( i, takingClassName );
     }
+
+    public void showTakingClass () {
+        System.out.printf( "수강과목\n" );
+        for (int i = 0; i < this.takingClass.size(); i ++ ) {
+            System.out.printf("%s", this.takingClass.get(i) );
+        }
+
+
+    }
 }
