@@ -16,12 +16,15 @@ public class Manager {
             switch ( select ) {
                 case 1:
                     Data.getInstance().saveData();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 2:
                     Data.getInstance().modifyData();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 3:
                     Data.getInstance().removeData();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 4:
                     break;
