@@ -28,20 +28,26 @@ public class Manager {
                     break;
                 case 4:
                     Searching.searchDataOfStudent();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 5:
                     Searching.showAllData();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 6:
                     Searching.searchDataOfSubject();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 7:
                     Searching.searchDataOfMajor();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 8:
                     Searching.searchDataOfYear();
+                    Data.getInstance().saveDataToFile();
                     break;
                 case 9:
+                    Data.getInstance().saveDataToFile();
                     Data.getInstance().saveDataToFile();
                     return;
 
