@@ -16,42 +16,32 @@ public class Manager {
             switch ( select ) {
                 case 1:
                     Data.getInstance().saveData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 2:
                     Data.getInstance().modifyData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 3:
                     Data.getInstance().removeData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 4:
                     Searching.searchDataOfStudent();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 5:
                     Searching.showAllData();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 6:
                     Searching.searchDataOfSubject();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 7:
                     Searching.searchDataOfMajor();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 8:
                     Searching.searchDataOfYear();
-                    Data.getInstance().saveDataToFile();
                     break;
                 case 9:
-                    Data.getInstance().saveDataToFile();
-                    Data.getInstance().saveDataToFile();
                     return;
-
             }
+            Data.getInstance().saveDataToFile();
         }
     }
 
