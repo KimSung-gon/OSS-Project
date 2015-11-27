@@ -75,7 +75,7 @@ public class Data {
         write.close();
     }
 
-    public void saveStudentData() throws IOException {
+    public static void saveStudentData() {
 
         Scanner sc = new Scanner( System.in );
 
@@ -115,7 +115,7 @@ public class Data {
         System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1 );
     }
 
-    public void modifyStudentData() {
+    public static void modifyStudentData() {
 
         Scanner sc = new Scanner(System.in);
         int changeDataNumber;
@@ -150,30 +150,7 @@ public class Data {
         }
     }
 
-    public static void showWayToModify() {
-        System.out.println("====================");
-        System.out.println("데이터 수정");
-        System.out.println("1.나이");
-        System.out.println("2.이름");
-        System.out.println("3.전공");
-        System.out.println("4.수강중인 수업");
-        System.out.println("5.나가기");
-        System.out.println("====================");
-        System.out.print("수정할 데이터 번호를 입력하세요 : ");
-    }
-
-    private static int searchStudentIdxNumber() {
-         // 못찾을시 -1 반환
-        int studentId = askStudentID();
-        for (int i = 0; i < StudentList.getInstance().slist.size(); i++) {
-            if (StudentList.getInstance().slist.get(i).studentID == studentId) {
-                return i;
-            }
-        }
-            return -1;
-    }
-
-    public static void removeStudentData() throws IOException {
+    public static void removeStudentData() {
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
         int studentId = askStudentID();
@@ -197,7 +174,34 @@ public class Data {
         System.out.println("삭제할 학생이 없습니다.");
     }
 
-    public static boolean choiceSaveDataOrNot() {
+
+
+    /***************** 아래부터는 캡슐화 된 메소드입니다. *****************/
+
+    private static void showWayToModify() {
+        System.out.println("====================");
+        System.out.println("데이터 수정");
+        System.out.println("1.나이");
+        System.out.println("2.이름");
+        System.out.println("3.전공");
+        System.out.println("4.수강중인 수업");
+        System.out.println("5.나가기");
+        System.out.println("====================");
+        System.out.print("수정할 데이터 번호를 입력하세요 : ");
+    }
+
+    private static int searchStudentIdxNumber() {
+         // 못찾을시 -1 반환
+        int studentId = askStudentID();
+        for (int i = 0; i < StudentList.getInstance().slist.size(); i++) {
+            if (StudentList.getInstance().slist.get(i).studentID == studentId) {
+                return i;
+            }
+        }
+            return -1;
+    }
+
+    private static boolean choiceSaveDataOrNot() {
         Scanner sc = new Scanner( System.in );
         String str = sc.next();
 
@@ -211,7 +215,7 @@ public class Data {
             return false;
     }
 
-    public static void showStudentData( Student s ) {
+    private static void showStudentData( Student s ) {
         System.out.printf("학번 : %d\n", s.studentID );
         System.out.printf("이름 : %s\n", s.name );
         System.out.printf("나이 : %d\n", s.age );
@@ -219,12 +223,12 @@ public class Data {
         s.showTakingClass();
     }
 
-    public static int askStudentID() {
+    private static int askStudentID() {
         Scanner sc = new Scanner( System.in );
         return sc.nextInt();
     }
 
-    public static void modifyStudentAge( int idx) {
+    private static void modifyStudentAge( int idx) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
         System.out.print("변경할 나이를 입력하세요 : ");
@@ -232,7 +236,7 @@ public class Data {
         StudentList.getInstance().slist.get(idx).age = ageToChange;
     }
 
-    public static void modifyStudentName( int idx ) {
+    private static void modifyStudentName( int idx ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
         System.out.print("변경할 이름을 입력하세요 : ");
@@ -240,7 +244,7 @@ public class Data {
         StudentList.getInstance().slist.get(idx).name = nameToChange;
     }
 
-    public static void modifyStudentMajor( int idx ) {
+    private static void modifyStudentMajor( int idx ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
         System.out.print("변경할 전공을 입력하세요 : ");
@@ -248,7 +252,7 @@ public class Data {
         StudentList.getInstance().slist.get(idx).major = majorToChange;
     }
 
-    public static void modifyTakingClass ( int idx ) {
+    private static void modifyTakingClass ( int idx ) {
         Scanner sc = new Scanner( System.in );
         while (true) {
             System.out.println("현재 수강중인 과목 : ");
