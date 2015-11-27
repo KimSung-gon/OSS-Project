@@ -13,6 +13,9 @@ public class Manager {
             showMainMenu();
             int select = sc.nextInt();
 
+            if((select == 1) || (select == 2) || (select == 3))
+                Data.getInstance().saveDataToFile();
+
             switch ( select ) {
                 case 1:
                     Data.getInstance().saveStudentData();
@@ -41,7 +44,6 @@ public class Manager {
                 case 9:
                     return;
             }
-            Data.getInstance().saveDataToFile();
         }
     }
 
