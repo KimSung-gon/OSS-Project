@@ -153,30 +153,28 @@ public class Data {
     public static void removeStudentData() {
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        int studentId = askStudentID();
+        int idx = searchStudentIdxNumber();
 
-        for(int i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
-            if(StudentList.getInstance().slist.get(i).studentID == studentId) {
-
-                showStudentData( StudentList.getInstance().slist.get(i) );
-                System.out.printf("삭제하시겠습니까?( y/n ) : ");
-                if ( choiceSaveDataOrNot() ) {
-                    StudentList.getInstance().slist.remove(i);
-                    System.out.println("삭제되었습니다.");
-                    return;
-                }
-                else {
-                    System.out.println("삭제를 취소합니다.");
-                    return;
-                }
-            }
+        if ( idx == -1 ) {
+            System.out.println("삭제할 학생이 없습니다.");
+            return;
         }
-        System.out.println("삭제할 학생이 없습니다.");
+
+        showStudentData( StudentList.getInstance().slist.get(idx) );
+        System.out.printf("삭제하시겠습니까?( y/n ) : ");
+        if ( choiceSaveDataOrNot() ) {
+            StudentList.getInstance().slist.remove(idx);
+            System.out.println("삭제되었습니다.");
+            return;
+        }
+        else {
+            System.out.println("삭제를 취소합니다.");
+            return;
+        }
     }
 
 
-
-    /***************** 아래부터는 캡슐화 된 메소드입니다. *****************/
+    /***************** 아래부터는 정보은닉된 메소드입니다. *****************/
 
     private static void showWayToModify() {
         System.out.println("====================");
@@ -235,7 +233,6 @@ public class Data {
         int ageToChange = sc.nextInt();
         StudentList.getInstance().slist.get(idx).age = ageToChange;
     }
-
     private static void modifyStudentName( int idx ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
@@ -243,7 +240,6 @@ public class Data {
         String nameToChange = sc.next();
         StudentList.getInstance().slist.get(idx).name = nameToChange;
     }
-
     private static void modifyStudentMajor( int idx ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
@@ -251,7 +247,6 @@ public class Data {
         String majorToChange = sc.next();
         StudentList.getInstance().slist.get(idx).major = majorToChange;
     }
-
     private static void modifyTakingClass ( int idx ) {
         Scanner sc = new Scanner( System.in );
         while (true) {
@@ -278,7 +273,6 @@ public class Data {
 
 
     }
-
 
 }
 
