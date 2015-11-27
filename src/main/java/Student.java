@@ -23,4 +23,25 @@ public class Student {
         student.name = name;
         student.major = major;
     }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
+    }
+
+    public void setTakingClass(ArrayList<String> takingClass, int i, String takingClassName) {
+
+        takingClass.set( i, takingClassName );
+    }
 }
