@@ -75,7 +75,7 @@ public class Data {
         write.close();
     }
 
-    public void saveData() throws IOException {
+    public void saveStudentData() throws IOException {
 
         Scanner sc = new Scanner( System.in );
 
@@ -115,9 +115,8 @@ public class Data {
         System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1 );
     }
 
-    public void modifyData(){
+    public void modifyStudentData(){
 
-       // TODO 학번 입력받아서 학생 정보 받아온 뒤에 원하는 정보 수정
         Scanner sc = new Scanner(System.in);
         int studentId;
         int changeDataNumber;
@@ -188,23 +187,54 @@ public class Data {
         }
     }
 
-    public void removeData() throws IOException {
-
-        Scanner sc = new Scanner( System.in );
-        int studentId;
-        int i;
+    public void removeStudentData() throws IOException {
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        studentId = sc.nextInt();
+        int studentId = askStudentID();
 
-        for(i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
+        for(int i = 0 ; i < StudentList.getInstance().slist.size() ; i++ ){
             if(StudentList.getInstance().slist.get(i).studentID == studentId) {
-                StudentList.getInstance().slist.remove(i);
-                System.out.println("삭제되었습니다.");
-                return;
+
+                showStudentData( StudentList.getInstance().slist.get(i) );
+                if ( choiceSaveDataOrNot() ) {
+                    StudentList.getInstance().slist.remove(i);
+                    System.out.println("삭제되었습니다.");
+                    return;
+                }
+                else {
+                    System.out.println("삭제를 취소합니다.");
+                    return;
+                }
             }
         }
-        if(i == StudentList.getInstance().slist.size()+1)
-            System.out.println("삭제할 학생이 없습니다.");
+        System.out.println("삭제할 학생이 없습니다.");
+    }
+
+    public boolean choiceSaveDataOrNot() {
+        Scanner sc = new Scanner( System.in );
+        String str = sc.next();
+
+        if ( str.compareTo( "y" ) == 0 ||
+                str.compareTo( "Y" ) == 0 ||
+                str.compareTo( "yes" ) == 0 ||
+                str.compareTo( "Yes" ) == 0 ||
+                str.compareTo( "YES" ) == 0 )
+            return true;
+        else
+            return false;
+    }
+
+    public void showStudentData( Student s ) {
+        System.out.printf("학번 : %d", s.studentID );
+        System.out.printf("이름 : %s", s.name );
+        System.out.printf("나이 : %d", s.age );
+        System.out.printf("전공 : %s", s.major );
+        s.showTakingClass();
+    }
+
+    public static int askStudentID() {
+        Scanner sc = new Scanner( System.in );
+        return sc.nextInt();
     }
 }
+
