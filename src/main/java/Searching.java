@@ -7,21 +7,20 @@ import java.util.Scanner;
 public class Searching {
 
     public static void searchDataOfStudent(){                   // 학번을 통한 정보 검색
+        System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
         int studentId =Integer.parseInt(inputString());
-        for(int i=0; i<StudentList.getInstance().slist.size(); i++)
-            if(StudentList.getInstance().slist.get(i).studentID == studentId)
+        for(int i=0; i<StudentList.getInstance().slist.size(); i++) {
+            if (StudentList.getInstance().slist.get(i).studentID == studentId) {
                 showdata(StudentList.getInstance().slist.get(i));
-            else{
-                System.out.println("조회되는 학번이 없습니다.");
-                System.out.println("1.다시입력  2.나가기");
-                int decide = Integer.parseInt(inputString());
-                while((decide == 1) || (decide == 2)) {
-                    if (decide == 1)
-                        Searching.searchDataOfStudent();
-                    if (decide == 2)
-                        Manager.showMainMenu();
-                }
+                returnMenu();
+                break;
             }
+            if (i == StudentList.getInstance().slist.size()) {
+                System.out.println("조회되는 학번이 없습니다.");
+                returnMenu();
+                break;
+            }
+        }
     }
 
     public static void showAllData(){                   // 전체 학생수, 모든 학생데이터 출력
@@ -30,9 +29,7 @@ public class Searching {
             showdata(StudentList.getInstance().slist.get(i));
 
         System.out.println("\n총 학생 수 : " + StudentList.getInstance().slist.size());
-        System.out.println("\n메뉴로 돌아가려면 아무 키나 입력하세요.");
-        inputString();
-
+        returnMenu();
     }
 
     public static void showdata(Student student){
@@ -47,25 +44,31 @@ public class Searching {
     }
 
     public static void searchDataOfSubject(){                   // 과목을 통한 정보 검색
+        System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
         String subject = inputString();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
             for(int j=0; j<StudentList.getInstance().slist.get(i).takingClass.size(); j++)
-                if(StudentList.getInstance().slist.get(i).takingClass.get(j) == subject)
+                if(StudentList.getInstance().slist.get(i).takingClass.get(j).compareTo(subject) == 0)
                     showStudentIdAndName(StudentList.getInstance().slist.get(i));
+        returnMenu();
     }
 
     public static void searchDataOfMajor(){                 // 전공을 통한 정보 검색
+        System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
         String major = inputString();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
-            if(StudentList.getInstance().slist.get(i).major == major)
+            if(StudentList.getInstance().slist.get(i).major.compareTo(major) == 0)
                 showStudentIdAndName(StudentList.getInstance().slist.get(i));
+        returnMenu();
     }
 
     public static void searchDataOfYear(){                  // 학번을 통한 정보 검색
+        System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
         int year = Integer.parseInt(inputString());
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
-            if(StudentList.getInstance().slist.get(i).studentID/1000 == year)
+            if(StudentList.getInstance().slist.get(i).studentID/10000 == year)
                 showStudentIdAndName(StudentList.getInstance().slist.get(i));
+        returnMenu();
     }
 
     public static void showStudentIdAndName(Student student){
@@ -78,9 +81,9 @@ public class Searching {
         return sc.next();
     }
 
+    public static void returnMenu(){
+        System.out.print("\n메뉴로 돌아가려면 아무 키나 입력하세요 : ");
+        inputString();
+    }
+
 }
-// TODO 학번을 통한 개인정보 상세 검색
-// TODO 저장된 학생 전체 정보에 대한 개요, 통계 출력
-// TODO 과목명에 따른 학생 검색
-// TODO 학과에 따른 학생 검색
-// TODO 입학년도에 따른 학생 검색
