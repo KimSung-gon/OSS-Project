@@ -37,6 +37,7 @@ public class Searching extends CommonStaitcMethod {
         for(int j=0; j<student.takingClass.size(); j++)
             System.out.println("[" + (j + 1) + "]" + student.takingClass.get(j));
         System.out.println("===========================");
+        returnMenu();
     }
 
     public static void searchStudentDataOfSubject(){                   // 과목을 통한 정보 검색
