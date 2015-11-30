@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Data {
+public class Data extends CommonStaitcMethod {
 
     private static Data datIinstance;
     private Data(){}
@@ -77,8 +77,6 @@ public class Data {
 
     public static void saveStudentData() {
 
-        Scanner sc = new Scanner( System.in );
-
         ArrayList<String> takeclass = new ArrayList<String>();
         int studentID;
         int age;
@@ -87,22 +85,23 @@ public class Data {
 
         System.out.println( "========== 1. 데이터 추가 ===========");
         System.out.print("이름 : ");
-        name = sc.next();
+        name = inputString();
 
         System.out.print("학번 : ");
-        studentID = sc.nextInt();
+        studentID = inputInt();
 
         System.out.print("나이 : ");
-        age = sc.nextInt();
+        age = inputInt();
 
         System.out.print("전공 : ");
-        major = sc.next();
+        major = inputString();
 
         System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
         int i = 1;
+
         while(true){
             System.out.printf("수강중인 과목 %d : ", i );
-            String lecture = sc.next();
+            String lecture = inputString();
             if( lecture.compareTo( "stop" ) == 0 ) {
                 break;
             }
@@ -120,7 +119,7 @@ public class Data {
         Scanner sc = new Scanner(System.in);
         int changeDataNumber;
         System.out.print("변경 할 학번을 입력하세요 : ");
-        int idx = searchStudentIdxNumber();
+        int idx = searchStudentIdxNumberByStudentID();
 
         if ( idx == -1 ) {
             System.out.printf("입력하신 학번은 존재하지 않습니다");
@@ -153,7 +152,7 @@ public class Data {
     public static void removeStudentData() {
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        int idx = searchStudentIdxNumber();
+        int idx = searchStudentIdxNumberByStudentID();
 
         if ( idx == -1 ) {
             System.out.println("삭제할 학생이 없습니다.");
@@ -188,17 +187,6 @@ public class Data {
         System.out.print("수정할 데이터 번호를 입력하세요 : ");
     }
 
-    private static int searchStudentIdxNumber() {
-         // 못찾을시 -1 반환
-        int studentId = askStudentID();
-        for (int i = 0; i < StudentList.getInstance().slist.size(); i++) {
-            if (StudentList.getInstance().slist.get(i).studentID == studentId) {
-                return i;
-            }
-        }
-            return -1;
-    }
-
     private static boolean choiceSaveDataOrNot() {
         Scanner sc = new Scanner( System.in );
         String str = sc.next();
@@ -211,19 +199,6 @@ public class Data {
             return true;
         else
             return false;
-    }
-
-    private static void showStudentData( Student s ) {
-        System.out.printf("학번 : %d\n", s.studentID );
-        System.out.printf("이름 : %s\n", s.name );
-        System.out.printf("나이 : %d\n", s.age );
-        System.out.printf("전공 : %s\n", s.major );
-        s.showTakingClass();
-    }
-
-    private static int askStudentID() {
-        Scanner sc = new Scanner( System.in );
-        return sc.nextInt();
     }
 
     private static void modifyStudentAge( int idx) {
@@ -256,22 +231,26 @@ public class Data {
             System.out.println("1.추가    2.삭제    3.나가기");
             System.out.print("실행 할 번호를 입력하세요 : ");
             int addOrRemoveOrModify = sc.nextInt();
-            if (addOrRemoveOrModify == 1) {
-                System.out.print("추가 할 과목을 입력하세요 : ");
-                String addSubject = sc.next();
-                StudentList.getInstance().slist.get(idx).takingClass.add(addSubject);
+
+            switch ( addOrRemoveOrModify ) {
+                case 1:
+                    System.out.print("추가 할 과목을 입력하세요 : ");
+                    String addSubject = sc.next();
+                    StudentList.getInstance().slist.get(idx).takingClass.add(addSubject);
+                    break;
+                case 2:
+                    System.out.print("삭제 할 과목을 입력하세요 : ");
+                    String removeSubject = sc.next();
+                    StudentList.getInstance().slist.get(idx).takingClass.remove(removeSubject);
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("1, 2, 3중에 하나를 입력하세요.");
+
+
             }
-            if (addOrRemoveOrModify == 2) {
-                System.out.print("삭제 할 과목을 입력하세요 : ");
-                String removeSubject = sc.next();
-                StudentList.getInstance().slist.get(idx).takingClass.remove(removeSubject);
-            }
-            if (addOrRemoveOrModify == 3)
-                break;
         }
-
-
-
     }
 
 }
