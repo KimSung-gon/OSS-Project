@@ -13,9 +13,6 @@ public class Manager {
             showMainMenu();
             int select = sc.nextInt();
 
-            if((select == 1) || (select == 2) || (select == 3))
-                Data.getInstance().saveDataToFile();
-
             switch ( select ) {
                 case 1:
                     Data.getInstance().saveStudentData();
@@ -33,17 +30,20 @@ public class Manager {
                     Searching.showAllData();
                     break;
                 case 6:
-                    Searching.searchDataOfSubject();
+                    Searching.searchStudentDataOfSubject();
                     break;
                 case 7:
-                    Searching.searchDataOfMajor();
+                    Searching.searchStudentDataOfMajor();
                     break;
                 case 8:
                     Searching.searchDataOfYear();
                     break;
                 case 9:
-                    return;
+                    break;
             }
+            Data.getInstance().saveDataToFile();
+            if ( select == 9 )
+                return;
         }
     }
 
