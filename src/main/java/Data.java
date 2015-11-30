@@ -244,6 +244,7 @@ public class Data extends CommonStaitcMethod {
                     StudentList.getInstance().slist.get(idx).takingClass.remove(removeSubject);
                     break;
                 case 3:
+                    returnMenu();
                     return;
                 default:
                     System.out.println("1, 2, 3중에 하나를 입력하세요.");
