@@ -7,7 +7,8 @@ public class Manager {
 
         Data.getInstance().loadDataFromFile();
 
-        while ( true ) {
+        boolean goOrStop = Administrators.checkAdmin();
+        while ( goOrStop ) {
 
             Scanner sc = new Scanner( System.in );
             showMainMenu();
