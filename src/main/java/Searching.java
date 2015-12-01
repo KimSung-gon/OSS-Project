@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Searching extends CommonStaitcMethod {
 
-    public static void searchDataOfStudent(){                   // 학번을 통한 정보 검색
+    public static void searchDataOfStudent(){
         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
         int studentIdx = searchStudentIdxNumberByStudentID();
 
@@ -14,16 +14,16 @@ public class Searching extends CommonStaitcMethod {
             showdata(StudentList.getInstance().slist.get(studentIdx));
         }
         returnMenu();
-    }
+    }                  // 학번을 통한 정보 검색
 
-    public static void showAllData(){                   // 전체 학생수, 모든 학생데이터 출력
+    public static void showAllData(){
 
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
             showdata(StudentList.getInstance().slist.get(i));
 
         System.out.println("\n총 학생 수 : " + StudentList.getInstance().slist.size());
         returnMenu();
-    }
+    }                          // 전체 학생수, 모든 학생데이터 출력
 
     public static void showdata(Student student){
 
@@ -38,9 +38,9 @@ public class Searching extends CommonStaitcMethod {
             System.out.println("[" + (j + 1) + "]" + student.takingClass.get(j));
         System.out.println("===========================");
         returnMenu();
-    }
+    }              // 학생 개인정보 출력
 
-    public static void searchStudentDataOfSubject(){                   // 과목을 통한 정보 검색
+    public static void searchStudentDataOfSubject(){
         System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
         String subject = inputString();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
@@ -48,25 +48,25 @@ public class Searching extends CommonStaitcMethod {
                 if(StudentList.getInstance().slist.get(i).takingClass.get(j).compareTo(subject) == 0)
                     showStudentIdAndName(StudentList.getInstance().slist.get(i));
         returnMenu();
-    }
+    }           // 과목을 통한 정보 검색
 
-    public static void searchStudentDataOfMajor(){                 // 전공을 통한 정보 검색
+    public static void searchStudentDataOfMajor(){
         System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
         String major = inputString();
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
             if(StudentList.getInstance().slist.get(i).major.compareTo(major) == 0)
                 showStudentIdAndName(StudentList.getInstance().slist.get(i));
         returnMenu();
-    }
+    }             // 전공을 통한 정보 검색
 
-    public static void searchDataOfYear(){                  // 학번을 통한 정보 검색
+    public static void searchDataOfYear(){
         System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
         int year = Integer.parseInt(inputString());
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
             if(StudentList.getInstance().slist.get(i).studentID/10000 == year)
                 showStudentIdAndName(StudentList.getInstance().slist.get(i));
         returnMenu();
-    }
+    }                     // 학번을 통한 정보 검색
 
 
 
