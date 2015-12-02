@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Administrators extends CommonStaitcMethod{
+public class Administrators extends CommonStaticMethod {
 
     private static ArrayList<Administrator> alist;
     private final String adminID[] = {"20091130", "20103308", "20113300"};          // 관리자들 학번

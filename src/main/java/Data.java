@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Data extends CommonStaitcMethod {
+public class Data extends CommonStaticMethod {
 
     private static Data datIinstance;
     private Data(){}

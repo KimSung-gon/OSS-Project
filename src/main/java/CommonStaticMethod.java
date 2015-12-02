@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CommonStaitcMethod {
+public class CommonStaticMethod {
 
     protected final static int askStudentID() {
         Scanner sc = new Scanner( System.in );

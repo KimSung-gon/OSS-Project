@@ -1,7 +1,4 @@
-import java.util.Scanner;
-
-
-public class Searching extends CommonStaitcMethod {
+public class Searching extends CommonStaticMethod {
 
     public static void searchDataOfStudent(){
         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
@@ -37,7 +34,6 @@ public class Searching extends CommonStaitcMethod {
         for(int j=0; j<student.takingClass.size(); j++)
             System.out.println("[" + (j + 1) + "]" + student.takingClass.get(j));
         System.out.println("===========================");
-        returnMenu();
     }              // 학생 개인정보 출력
 
     public static void searchStudentDataOfSubject(){
