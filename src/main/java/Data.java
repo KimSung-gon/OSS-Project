@@ -49,7 +49,7 @@ public class Data extends CommonStaitcMethod {
         }
         else
             f.createNewFile();
-    }
+    }           // 텍스트파일에 정보를 학생리스트로 불러옴
 
     public static void saveDataToFile() throws IOException {
         Writer write = new FileWriter( "studentList.txt" );
@@ -73,7 +73,7 @@ public class Data extends CommonStaitcMethod {
         }
         bWriter.close();
         write.close();
-    }
+    }             // 학생리스트를 텍스트파일에 저장
 
     public static void saveStudentData() {
 
@@ -112,7 +112,7 @@ public class Data extends CommonStaitcMethod {
         }
         StudentList.getInstance().slist.add(new Student(studentID, age, name, major, takeclass));
         System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1 );
-    }
+    }                                // 학생리스트에 학생정보 저장
 
     public static void modifyStudentData() {
 
@@ -147,7 +147,7 @@ public class Data extends CommonStaitcMethod {
                     return;
             }
         }
-    }
+    }                              // 학생리스트에 학생정보 변경
 
     public static void removeStudentData() {
 
@@ -170,7 +170,7 @@ public class Data extends CommonStaitcMethod {
             System.out.println("삭제를 취소합니다.");
         }
         returnMenu();
-    }
+    }                              // 학생리스트에 학생정보 삭제
 
 
     /***************** 아래부터는 정보은닉된 메소드입니다. *****************/

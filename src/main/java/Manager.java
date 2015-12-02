@@ -7,7 +7,15 @@ public class Manager {
 
         Data.getInstance().loadDataFromFile();
 
-        while ( true ) {
+        boolean goOrStop = Administrators.checkAdmin();
+
+        for(int i=0; i<15; i++)
+            System.out.println();
+
+        if(goOrStop == true)
+            System.out.println("로그인 하였습니다");
+
+        while ( goOrStop ) {
 
             Scanner sc = new Scanner( System.in );
             showMainMenu();
@@ -49,8 +57,8 @@ public class Manager {
 
     public static void showMainMenu () {
 
-        for (int i = 0; i < 100; i ++ ) {
-            System.out.println("");
+        for (int i = 0; i < 1; i ++ ) {
+            System.out.println();
         }
 
         System.out.printf( "============== Menu ==============\n" );
