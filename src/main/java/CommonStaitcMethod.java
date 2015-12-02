@@ -43,7 +43,7 @@ public class CommonStaitcMethod {
 
     protected final static void showStudentIdAndName(Student student){
         System.out.print("학번 : " + student.studentID);
-        System.out.println("    이름 : " + student.name);
+        System.out.println("\t이름 : " + student.name);
     }
 
 }
