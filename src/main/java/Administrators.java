@@ -66,8 +66,8 @@ public class Administrators extends CommonStaticMethod {
             checkReturn = false;
             System.out.println("1.다시입력");
             System.out.println("종료하려면 아무거나 누르십시오");
-            int tempInt = inputInt();
-            if(tempInt == 1)
+            String tempContinue = inputString();
+            if(tempContinue.equals("1"))
                 loop = true;
             else
                 loop = false;
