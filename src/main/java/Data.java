@@ -156,6 +156,7 @@ public class Data extends CommonStaitcMethod {
 
         if ( idx == -1 ) {
             System.out.println("삭제할 학생이 없습니다.");
+            returnMenu();
             return;
         }
 
@@ -164,12 +165,11 @@ public class Data extends CommonStaitcMethod {
         if ( choiceSaveDataOrNot() ) {
             StudentList.getInstance().slist.remove(idx);
             System.out.println("삭제되었습니다.");
-            return;
         }
         else {
             System.out.println("삭제를 취소합니다.");
-            return;
         }
+        returnMenu();
     }
 
 
