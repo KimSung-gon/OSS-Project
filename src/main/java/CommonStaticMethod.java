@@ -20,29 +20,12 @@ public class CommonStaticMethod {
     }       // 학번을 입력받아 인덱스를 리턴
 
     protected final static void showStudentData(Student s) {
-        System.out.printf("학번 : %d\n", showStudentID( s ));
-        System.out.printf("이름 : %s\n", showStudentName( s ));
-        System.out.printf("나이 : %d\n", showStudentAge( s ));
-        System.out.printf("전공 : %s\n", showStudentMajor( s ));
+        System.out.printf("학번 : %d\n", s.studentID);
+        System.out.printf("이름 : %s\n", s.name);
+        System.out.printf("나이 : %d\n", s.age );
+        System.out.printf("전공 : %s\n", s.major );
         s.showTakingClass();
     }             // 학생 개인정보 출력
-
-
-    protected final static int showStudentID ( Student s ) {
-        return s.studentID;
-    }
-
-    protected final static String showStudentName ( Student s ) {
-        return s.name;
-    }
-
-    protected final static int showStudentAge ( Student s ){
-        return s.age;
-    }
-
-    protected  final static String showStudentMajor ( Student s ) {
-        return s.major;
-    }
 
     protected final static String inputStringNumber() {
         Scanner sc = new Scanner(System.in);
@@ -68,7 +51,7 @@ public class CommonStaticMethod {
         return sc.nextInt();
     }                                 // 정수형을 입력받아 리턴
 
-    protected final static void returnFalseMenu() {
+    protected final static void returnFalseInputMessage() {
         System.out.println("잘못된 입력입니다.");
     }
 

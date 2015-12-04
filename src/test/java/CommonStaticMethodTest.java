@@ -6,15 +6,6 @@ import java.util.ArrayList;
 public class CommonStaticMethodTest {
 
     @Test
-    public void searchStudentIdxNumberByStudentID () {
-
-//        ArrayList<Student> slist = new ArrayList<Student>();
-//        StudentList testList = new StudentList( slist );
-
-
-    }
-
-    @Test
     public void isNumberic () {
         String testStr1 = "123";
         String testStr2 = "a123";
