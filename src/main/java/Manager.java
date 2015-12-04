@@ -1,9 +1,10 @@
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Manager {
 
-    public static void start () throws IOException {
+    public static void start () throws IOException ,InputMismatchException {
 
         Data.getInstance().loadDataFromFile();
 
@@ -17,41 +18,54 @@ public class Manager {
 
         while ( goOrStop ) {
 
-            Scanner sc = new Scanner( System.in );
-            showMainMenu();
-            int select = sc.nextInt();
 
-            switch ( select ) {
-                case 1:
-                    Data.getInstance().saveStudentData();
-                    break;
-                case 2:
-                    Data.getInstance().modifyStudentData();
-                    break;
-                case 3:
-                    Data.getInstance().removeStudentData();
-                    break;
-                case 4:
-                    Searching.searchDataOfStudent();
-                    break;
-                case 5:
-                    Searching.showAllData();
-                    break;
-                case 6:
-                    Searching.searchStudentDataOfSubject();
-                    break;
-                case 7:
-                    Searching.searchStudentDataOfMajor();
-                    break;
-                case 8:
-                    Searching.searchDataOfYear();
-                    break;
-                case 9:
-                    break;
+            try {
+
+
+                Scanner sc = new Scanner(System.in);
+                showMainMenu();
+
+                int select = sc.nextInt();
+
+
+                switch (select) {
+                    case 1:
+                        Data.getInstance().saveStudentData();
+                        break;
+                    case 2:
+                        Data.getInstance().modifyStudentData();
+                        break;
+                    case 3:
+                        Data.getInstance().removeStudentData();
+                        break;
+                    case 4:
+                        Searching.searchDataOfStudent();
+                        break;
+                    case 5:
+                        Searching.showAllData();
+                        break;
+                    case 6:
+                        Searching.searchStudentDataOfSubject();
+                        break;
+                    case 7:
+                        Searching.searchStudentDataOfMajor();
+                        break;
+                    case 8:
+                        Searching.searchDataOfYear();
+                        break;
+                    case 9:
+                        break;
+                }
+                Data.getInstance().saveDataToFile();
+                if (select == 9)
+                    return;
             }
-            Data.getInstance().saveDataToFile();
-            if ( select == 9 )
-                return;
+
+            catch (InputMismatchException ex){
+                System.out.println("인풋 미스매치");
+
+            }
+
         }
     }
 

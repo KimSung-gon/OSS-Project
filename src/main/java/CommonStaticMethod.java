@@ -37,6 +37,7 @@ public class CommonStaticMethod {
     }                                 // 정수형을 입력받아 리턴
 
     protected final static void returnMenu(){
+        System.out.println("잘못된 입력입니다.");
         System.out.print("메뉴로 돌아가려면 아무 키나 입력하세요 : ");
         inputString();
     }                               // 메뉴로 돌아가기
