@@ -2,7 +2,7 @@ public class Searching extends CommonStaticMethod {
 
     public static void searchDataOfStudent(){
         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
-        int studentIdx = searchStudentIdxNumberByStudentID();
+        int studentIdx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
         if ( studentIdx == -1 ) {
             System.out.println("조회되는 학번이 없습니다.");

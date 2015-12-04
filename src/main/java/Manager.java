@@ -20,8 +20,6 @@ public class Manager {
 
 
             try {
-
-
                 Scanner sc = new Scanner(System.in);
                 showMainMenu();
 
@@ -60,9 +58,9 @@ public class Manager {
                 if (select == 9)
                     return;
             }
-
-            catch (InputMismatchException ex){
-                System.out.println("인풋 미스매치");
+            catch (InputMismatchException ex) {
+                System.out.println("올바르지 않은 형식입니다.");
+                System.out.println("숫자를 입력하세요.");
 
             }
 

@@ -119,7 +119,7 @@ public class Data extends CommonStaticMethod {
         Scanner sc = new Scanner(System.in);
         int changeDataNumber;
         System.out.print("변경 할 학번을 입력하세요 : ");
-        int idx = searchStudentIdxNumberByStudentID();
+        int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
         if ( idx == -1 ) {
             System.out.printf("입력하신 학번은 존재하지 않습니다");
@@ -152,7 +152,7 @@ public class Data extends CommonStaticMethod {
     public static void removeStudentData() {
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        int idx = searchStudentIdxNumberByStudentID();
+        int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
         if ( idx == -1 ) {
             System.out.println("삭제할 학생이 없습니다.");
@@ -162,7 +162,7 @@ public class Data extends CommonStaticMethod {
 
         showStudentData( StudentList.getInstance().slist.get(idx) );
         System.out.printf("삭제하시겠습니까?( y/n ) : ");
-        if ( choiceSaveDataOrNot() ) {
+        if ( choiceSaveDataOrNot( inputString() ) ) {
             StudentList.getInstance().slist.remove(idx);
             System.out.println("삭제되었습니다.");
         }
@@ -187,19 +187,19 @@ public class Data extends CommonStaticMethod {
         System.out.print("수정할 데이터 번호를 입력하세요 : ");
     }
 
-    private static boolean choiceSaveDataOrNot() {
-        Scanner sc = new Scanner( System.in );
-        String str = sc.next();
+    static boolean choiceSaveDataOrNot( String s ) {
 
-        if ( str.compareTo( "y" ) == 0 ||
-                str.compareTo( "Y" ) == 0 ||
-                str.compareTo( "yes" ) == 0 ||
-                str.compareTo( "Yes" ) == 0 ||
-                str.compareTo( "YES" ) == 0 )
+        if ( s.compareTo( "y" ) == 0 ||
+                s.compareTo( "Y" ) == 0 ||
+                s.compareTo( "yes" ) == 0 ||
+                s.compareTo( "Yes" ) == 0 ||
+                s.compareTo( "YES" ) == 0 )
             return true;
         else
             return false;
     }
+
+
 
     private static void modifyStudentAge( int idx) {
         Scanner sc = new Scanner(System.in);

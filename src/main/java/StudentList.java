@@ -5,7 +5,7 @@ public class StudentList {
     private static StudentList slInstance;
     ArrayList<Student> slist;
 
-    private StudentList(){
+    StudentList(){
         slist = new ArrayList<Student>();
     }
 
