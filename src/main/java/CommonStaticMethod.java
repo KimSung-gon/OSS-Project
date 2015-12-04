@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommonStaticMethod {
@@ -43,13 +44,24 @@ public class CommonStaticMethod {
         return s.major;
     }
 
-
-
+    protected final static String inputStringNumber() {
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
+    }                       // 문자열을 입력받아 리턴
 
     protected final static String inputString() {
         Scanner sc = new Scanner(System.in);
-        return sc.next();
-    }                            // 문자열을 입력받아 리턴
+
+        String string = sc.next();
+        if (isNumeric(string))
+            throw new InputMismatchException();
+
+        return string;
+    }                       // 문자열을 입력받되 숫자가 아닌 문자만을 입력받아 리턴
+
+    protected final static boolean isNumeric(String string) {
+        return string.matches("[-+]?\\d*\\.?\\d+");
+    }                       // 문자열이 숫자로 이루어졋는지 문자로 이루어졋는지를 확인
 
     protected final static int inputInt() {
         Scanner sc = new Scanner(System.in);
@@ -65,7 +77,7 @@ public class CommonStaticMethod {
         inputString();
     }                               // 메뉴로 돌아가기
 
-    protected final static void showStudentIdAndName(Student student){
+    protected final static void showStudentIdAndName(Student student) {
         System.out.print("학번 : " + student.studentID);
         System.out.println("\t이름 : " + student.name);
     }       // 학생이름과 학번 출력

@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class Data extends CommonStaticMethod {
 
     private static Data datIinstance;
-    private Data(){}
 
-    public static Data getInstance(){
-        if(datIinstance == null)
+    private Data() {
+    }
+
+    public static Data getInstance() {
+        if (datIinstance == null)
             datIinstance = new Data();
 
         return datIinstance;
@@ -16,8 +18,8 @@ public class Data extends CommonStaticMethod {
 
     public static void loadDataFromFile() throws IOException {
 
-        File f = new File( "studentList.txt" );
-        if ( f.canRead() ) {
+        File f = new File("studentList.txt");
+        if (f.canRead()) {
             Reader read = new FileReader("studentList.txt");
             BufferedReader bReader = new BufferedReader(read);
             String tmp = bReader.readLine();
@@ -46,26 +48,25 @@ public class Data extends CommonStaticMethod {
             }
             bReader.close();
             read.close();
-        }
-        else
+        } else
             f.createNewFile();
     }           // 텍스트파일에 정보를 학생리스트로 불러옴
 
     public static void saveDataToFile() throws IOException {
-        Writer write = new FileWriter( "studentList.txt" );
-        BufferedWriter bWriter = new BufferedWriter( write );
+        Writer write = new FileWriter("studentList.txt");
+        BufferedWriter bWriter = new BufferedWriter(write);
 
-        if (StudentList.getInstance().slist != null ) {
+        if (StudentList.getInstance().slist != null) {
 
-            for ( int i = 0; i < StudentList.getInstance().slist.size(); i ++ ) {
+            for (int i = 0; i < StudentList.getInstance().slist.size(); i++) {
 
                 bWriter.append("#\n");
-                bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n" );
+                bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).studentID) + "\n");
                 bWriter.append(String.valueOf(StudentList.getInstance().slist.get(i).age) + "\n");
-                bWriter.append(StudentList.getInstance().slist.get(i).name + "\n" );
-                bWriter.append(StudentList.getInstance().slist.get(i).major + "\n" );
+                bWriter.append(StudentList.getInstance().slist.get(i).name + "\n");
+                bWriter.append(StudentList.getInstance().slist.get(i).major + "\n");
 
-                for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++ ) {
+                for (int j = 0; j < StudentList.getInstance().slist.get(i).takingClass.size(); j++) {
                     bWriter.append(StudentList.getInstance().slist.get(i).takingClass.get(j) + "\n");
                 }
                 bWriter.flush();
@@ -83,7 +84,7 @@ public class Data extends CommonStaticMethod {
         String name;
         String major;
 
-        System.out.println( "========== 1. 데이터 추가 ===========");
+        System.out.println("========== 1. 데이터 추가 ===========");
         System.out.print("이름 : ");
         name = inputString();
 
@@ -99,19 +100,18 @@ public class Data extends CommonStaticMethod {
         System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
         int i = 1;
 
-        while(true){
-            System.out.printf("수강중인 과목 %d : ", i );
+        while (true) {
+            System.out.printf("수강중인 과목 %d : ", i);
             String lecture = inputString();
-            if( lecture.compareTo( "stop" ) == 0 ) {
+            if (lecture.compareTo("stop") == 0) {
                 break;
-            }
-            else {
+            } else {
                 takeclass.add(lecture);
                 i++;
             }
         }
         StudentList.getInstance().slist.add(new Student(studentID, age, name, major, takeclass));
-        System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1 );
+        System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1);
     }                                // 학생리스트에 학생정보 저장
 
     public static void modifyStudentData() {
@@ -121,7 +121,7 @@ public class Data extends CommonStaticMethod {
         System.out.print("변경 할 학번을 입력하세요 : ");
         int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
-        if ( idx == -1 ) {
+        if (idx == -1) {
             System.out.printf("입력하신 학번은 존재하지 않습니다");
             return;
         }
@@ -132,16 +132,16 @@ public class Data extends CommonStaticMethod {
 
             switch (changeDataNumber) {
                 case 1:
-                    modifyStudentAge( idx );
+                    modifyStudentAge(idx);
                     break;
                 case 2:
-                    modifyStudentName( idx );
+                    modifyStudentName(idx);
                     break;
                 case 3:
-                    modifyStudentMajor( idx );
+                    modifyStudentMajor(idx);
                     break;
                 case 4:
-                    modifyTakingClass( idx );
+                    modifyTakingClass(idx);
                     break;
                 default:
                     return;
@@ -154,26 +154,27 @@ public class Data extends CommonStaticMethod {
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
         int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
-        if ( idx == -1 ) {
+        if (idx == -1) {
             System.out.println("삭제할 학생이 없습니다.");
             returnMenu();
             return;
         }
 
-        showStudentData( StudentList.getInstance().slist.get(idx) );
+        showStudentData(StudentList.getInstance().slist.get(idx));
         System.out.printf("삭제하시겠습니까?( y/n ) : ");
         if ( choiceSaveDataOrNot( inputString() ) ) {
             StudentList.getInstance().slist.remove(idx);
             System.out.println("삭제되었습니다.");
-        }
-        else {
+        } else {
             System.out.println("삭제를 취소합니다.");
         }
         returnMenu();
     }                              // 학생리스트에 학생정보 삭제
 
 
-    /***************** 아래부터는 정보은닉된 메소드입니다. *****************/
+    /*****************
+     * 아래부터는 정보은닉된 메소드입니다.
+     *****************/
 
     private static void showWayToModify() {
         System.out.println("====================");
@@ -199,31 +200,32 @@ public class Data extends CommonStaticMethod {
             return false;
     }
 
-
-
-    private static void modifyStudentAge( int idx) {
+    private static void modifyStudentAge(int idx) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
         System.out.print("변경할 나이를 입력하세요 : ");
         int ageToChange = sc.nextInt();
         StudentList.getInstance().slist.get(idx).age = ageToChange;
     }
-    private static void modifyStudentName( int idx ) {
+
+    private static void modifyStudentName(int idx) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
         System.out.print("변경할 이름을 입력하세요 : ");
         String nameToChange = sc.next();
         StudentList.getInstance().slist.get(idx).name = nameToChange;
     }
-    private static void modifyStudentMajor( int idx ) {
+
+    private static void modifyStudentMajor(int idx) {
         Scanner sc = new Scanner(System.in);
         System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
         System.out.print("변경할 전공을 입력하세요 : ");
         String majorToChange = sc.next();
         StudentList.getInstance().slist.get(idx).major = majorToChange;
     }
-    private static void modifyTakingClass ( int idx ) {
-        Scanner sc = new Scanner( System.in );
+
+    private static void modifyTakingClass(int idx) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("현재 수강중인 과목 : ");
             for (int j = 0; j < StudentList.getInstance().slist.get(idx).takingClass.size(); j++)
@@ -232,7 +234,7 @@ public class Data extends CommonStaticMethod {
             System.out.print("실행 할 번호를 입력하세요 : ");
             int addOrRemoveOrModify = sc.nextInt();
 
-            switch ( addOrRemoveOrModify ) {
+            switch (addOrRemoveOrModify) {
                 case 1:
                     System.out.print("추가 할 과목을 입력하세요 : ");
                     String addSubject = sc.next();
@@ -248,11 +250,8 @@ public class Data extends CommonStaticMethod {
                     return;
                 default:
                     System.out.println("1, 2, 3중에 하나를 입력하세요.");
-
-
             }
         }
     }
-
 }
 
