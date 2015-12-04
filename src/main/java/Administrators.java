@@ -64,6 +64,7 @@ public class Administrators extends CommonStaticMethod {
 
         if(IDexist == false){
             checkReturn = false;
+            System.out.println("관리자학번이 아닙니다");
             System.out.println("1.다시입력");
             System.out.println("종료하려면 아무거나 누르십시오");
             String tempContinue = inputString();
