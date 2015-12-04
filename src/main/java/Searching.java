@@ -57,7 +57,7 @@ public class Searching extends CommonStaticMethod {
 
     public static void searchDataOfYear(){
         System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
-        int year = Integer.parseInt(inputString());
+        int year = Integer.parseInt(inputStringNumber());
         for(int i=0; i<StudentList.getInstance().slist.size(); i++)
             if(StudentList.getInstance().slist.get(i).studentID/10000 == year)
                 showStudentIdAndName(StudentList.getInstance().slist.get(i));

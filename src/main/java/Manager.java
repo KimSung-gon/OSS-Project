@@ -65,6 +65,9 @@ public class Manager {
                 System.out.println("인풋 미스매치");
 
             }
+            catch (NumberFormatException ex) {
+                System.out.println("넘버 포맷 익셉션");
+            }
 
         }
     }

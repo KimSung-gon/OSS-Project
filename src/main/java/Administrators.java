@@ -31,7 +31,7 @@ public class Administrators extends CommonStaticMethod {
     private void loginID(){
 
         System.out.print("관리자 학번을 입력해주세요 : ");
-        String tempID = inputString();
+        String tempID = inputStringNumber();
 
         for (int i = 0; i < alist.size(); i++) {
             if (tempID.equals(alist.get(i).adminID)) {

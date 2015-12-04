@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommonStaticMethod {
@@ -26,10 +27,25 @@ public class CommonStaticMethod {
         s.showTakingClass();
     }             // 학생 개인정보 출력
 
-    protected final static String inputString(){
+    protected final static String inputStringNumber(){
         Scanner sc = new Scanner(System.in);
         return sc.next();
+    }
+
+    protected final static String inputString(){
+        Scanner sc = new Scanner(System.in);
+
+        String string = sc.next();
+        if(isNumeric(string))
+            throw new InputMismatchException();
+
+        return string;
     }                            // 문자열을 입력받아 리턴
+
+    protected final static boolean isNumeric(String string){
+        return string.matches("[-+]?\\d*\\.?\\d+");
+    }
+
 
     protected final static int inputInt() {
         Scanner sc = new Scanner(System.in);
