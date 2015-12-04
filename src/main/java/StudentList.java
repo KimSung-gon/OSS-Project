@@ -5,12 +5,12 @@ public class StudentList {
     private static StudentList slInstance;
     ArrayList<Student> slist;
 
-    private StudentList(){
+    private StudentList() {
         slist = new ArrayList<Student>();
     }
 
-    public static StudentList getInstance(){
-        if(slInstance == null)
+    public static StudentList getInstance() {
+        if (slInstance == null)
             slInstance = new StudentList();
 
         return slInstance;

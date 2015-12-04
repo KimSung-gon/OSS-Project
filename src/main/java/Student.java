@@ -16,7 +16,7 @@ public class Student {
         this.major = major;
     }
 
-    public Student(Student student){
+    public Student(Student student) {
         student.takingClass = takingClass;
         student.studentID = studentID;
         student.age = age;
@@ -24,10 +24,10 @@ public class Student {
         student.major = major;
     }
 
-    public void showTakingClass () {
-        System.out.printf( "수강과목\n" );
-        for (int i = 0; i < this.takingClass.size(); i ++ ) {
-            System.out.printf("%s\n", this.takingClass.get(i) );
+    public void showTakingClass() {
+        System.out.printf("수강과목\n");
+        for (int i = 0; i < this.takingClass.size(); i++) {
+            System.out.printf("%s\n", this.takingClass.get(i));
         }
 
 
