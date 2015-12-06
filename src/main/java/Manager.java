@@ -53,6 +53,7 @@ public class Manager {
                         int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
                         Searching.searchDataOfStudent(studentIdx);
+                        CommonStaticMethod.returnMenu();
                         break;
                     }
                     case 5:
@@ -61,19 +62,28 @@ public class Manager {
                     case 6: {
                         System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
                         String subject = CommonStaticMethod.inputString();
-                        Searching.searchStudentDataOfSubject(subject);
+                        int success = Searching.searchStudentDataOfSubject(subject);
+                        if(success == 0)
+                            System.out.println("해당하는과목이 없습니다. 과목명을 확인해주세요.");
+                        CommonStaticMethod.returnMenu();
                         break;
                     }
                     case 7: {
                         System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
                         String major = CommonStaticMethod.inputString();
-                        Searching.searchStudentDataOfMajor(major);
+                        int success = Searching.searchStudentDataOfMajor(major);
+                        if(success == 0)
+                            System.out.println("해당하는 과가 없습니다. 전공명을 확인해주세요.");
+                        CommonStaticMethod.returnMenu();
                         break;
                     }
                     case 8:{
                         System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
                         int year = Integer.parseInt(CommonStaticMethod.inputStringNumber());
-                        Searching.searchDataOfYear(year);
+                        int success = Searching.searchDataOfYear(year, StudentList.getInstance().slist);
+                        if(success == 0)
+                            System.out.println("해당하는 입학년도가 없습니다. 입학년도를 확인해주세요.");
+                        CommonStaticMethod.returnMenu();
                         break;
                     }
                     case 9:
