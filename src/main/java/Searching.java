@@ -64,11 +64,11 @@ public class Searching extends CommonStaticMethod {
             return 1;
     }             // 전공을 통한 정보 검색  (성공 : 1 , 실패 : 0)
 
-    public static int searchDataOfYear(int year, ArrayList<Student> slist) {
+    public static int searchDataOfYear(int selectedYear, ArrayList<Student> slist) {
 
         int count = 0;
         for (int i = 0; i < slist.size(); i++)
-            if (slist.get(i).studentID / 10000 == year) {
+            if ( slist.get(i).studentID / 10000 == selectedYear ) {
                 showStudentIdAndName(slist.get(i));
                 count++;
             }
