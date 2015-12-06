@@ -27,30 +27,55 @@ public class Manager {
 
 
                 switch (select) {
-                    case 1:
+                    case 1: {
                         Data.getInstance().saveStudentData();
                         break;
-                    case 2:
+                    }
+                    case 2: {
                         Data.getInstance().modifyStudentData();
                         break;
-                    case 3:
-                        Data.getInstance().removeStudentData();
+                    }
+                    case 3: {
+
+                        System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
+                        int idx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
+                        System.out.println("idx = " + idx);
+                        if(idx != -1) {
+                            int confirm = Data.getInstance().removeStudentData(idx);
+                            System.out.printf("삭제하시겠습니까?( y/n ) : ");
+                            boolean choice = Data.choiceSaveDataOrNot( CommonStaticMethod.inputString() );
+                            Data.getInstance().removeStudentDataConfirm(confirm, choice);
+                        }
                         break;
-                    case 4:
-                        Searching.searchDataOfStudent();
+                    }
+                    case 4: {
+                        System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
+                        int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
+
+                        Searching.searchDataOfStudent(studentIdx);
                         break;
+                    }
                     case 5:
                         Searching.showAllData();
                         break;
-                    case 6:
-                        Searching.searchStudentDataOfSubject();
+                    case 6: {
+                        System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
+                        String subject = CommonStaticMethod.inputString();
+                        Searching.searchStudentDataOfSubject(subject);
                         break;
-                    case 7:
-                        Searching.searchStudentDataOfMajor();
+                    }
+                    case 7: {
+                        System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
+                        String major = CommonStaticMethod.inputString();
+                        Searching.searchStudentDataOfMajor(major);
                         break;
-                    case 8:
-                        Searching.searchDataOfYear();
+                    }
+                    case 8:{
+                        System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
+                        int year = Integer.parseInt(CommonStaticMethod.inputStringNumber());
+                        Searching.searchDataOfYear(year);
                         break;
+                    }
                     case 9:
                         break;
                 }

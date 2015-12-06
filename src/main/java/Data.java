@@ -149,21 +149,25 @@ public class Data extends CommonStaticMethod {
         }
     }                              // 학생리스트에 학생정보 변경
 
-    public static void removeStudentData() {
+    public static int removeStudentData(int idx) {
 
-        System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-        int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
+        System.out.println("빠졋다2");
 
         if (idx == -1) {
             System.out.println("삭제할 학생이 없습니다.");
             returnMenu();
-            return;
+            return -1;
         }
+        else {
+            showStudentData(StudentList.getInstance().slist.get(idx));
+            return 1;
+        }
+    }
 
-        showStudentData(StudentList.getInstance().slist.get(idx));
-        System.out.printf("삭제하시겠습니까?( y/n ) : ");
-        if ( choiceSaveDataOrNot( inputString() ) ) {
-            StudentList.getInstance().slist.remove(idx);
+    public static void removeStudentDataConfirm(int confirm, boolean choice){
+
+        if ( choice ) {
+            StudentList.getInstance().slist.remove(confirm);
             System.out.println("삭제되었습니다.");
         } else {
             System.out.println("삭제를 취소합니다.");
