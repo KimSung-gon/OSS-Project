@@ -1,14 +1,15 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Administrators extends CommonStaticMethod {
+public class Administrators {
 
     private static ArrayList<Administrator> alist;
     private final String adminID[] = {"20091130", "20103308", "20113300"};          // 관리자들 학번
     private final String password[] = {"dlaehdgns", "rlatjdrhs", "dbsaudtlr"};      // 관리자들 비밀번호(이름)
 
-    private boolean checkReturn;            // 관리자 프로그램 실행여부 변수
-    private boolean IDexist = false;        // ID의 존재여부 변수. default 값으로 false를 넣음
-    private boolean loop = true;              // ID가 맞을때까지 반복여부의 변수
+    private static int count = 3;
+    private static boolean checkReturn;
+    private static String tmpContinue = "1";
 
     private Administrators() {
         alist = new ArrayList<>();
@@ -16,62 +17,108 @@ public class Administrators extends CommonStaticMethod {
             alist.add(new Administrator(adminID[i], password[i]));
     }
 
-    public static final boolean checkAdmin() {
+    public static boolean loginStart() {
 
         Administrators admins = new Administrators();
 
-        while (admins.loop) {
+        while (tmpContinue.equals("1")) {
 
-            admins.loginID();
-            admins.continueLogin();
+            String adminID = admins.fetchID();
+
+            boolean tmpIDexist = admins.IDexist(adminID);
+            int tmpIndexNumberOfID = admins.IndexNumberOfID(adminID);
+
+            admins.succeessLoginID(tmpIDexist, tmpIndexNumberOfID);
         }
-        return admins.checkReturn;
-    }   // 관리자 인증메서드
+        return checkReturn;
+    }
 
-    private void loginID() {
+    public void succeessLoginID(boolean tmpIDexist, int tmpIndexNumberOfID) {
 
-        System.out.print("관리자 학번을 입력해주세요 : ");
-        String tempID = inputStringNumber();
+        if (tmpIDexist == true) {
 
-        for (int i = 0; i < alist.size(); i++) {
-            if (tempID.equals(alist.get(i).adminID)) {
-                IDexist = true;
-                loop = false;
-                int count = 3;
-                loginPassword(i);
+            while( count > 0 ) {
+
+                String adminPassword = fetchPassword();
+                boolean tmpAdminPassword = checkPassword(tmpIndexNumberOfID, adminPassword);
+                successLoginPassword(tmpAdminPassword);
             }
+
+        } else {
+            printWrongID();
+            tmpContinue = inputString();
+            for(int i=0; i<5; i++)
+                System.out.println();
         }
-    }                   // 관리자 학번을 입력
+    }
+    public boolean successLoginPassword(boolean tmpAdminPassword){
 
-    private void loginPassword(int i) {
-        int count = 3;
-        while (count > 0) {
-            System.out.print("비밀번호를 입력해주세요 : ");
-            String tempPassword = inputString();
-            if (tempPassword.equals(alist.get(i).adminPassword)) {
-                checkReturn = true;
-                break;
-            } else {
-                System.out.println("잘못된 비밀번호 입니다.");
-                count--;
-                System.out.println("남은 입력횟수 : " + count);
-                checkReturn = false;
-            }
-        }
-    }        // 관리자 비밀번호로 인증
-
-    private void continueLogin() {
-
-        if (IDexist == false) {
+        if (tmpAdminPassword == true) {
+            System.out.println("로그인 되었습니다");
+            tmpContinue = "0";
+            checkReturn = true;
+            count = 0;
+        } else {
+            printWrongPassword();
+            if (count == 0)
+                tmpContinue = "0";
             checkReturn = false;
-            System.out.println("관리자학번이 아닙니다");
-            System.out.println("1.다시입력");
-            System.out.println("종료하려면 아무거나 누르십시오");
-            String tempContinue = inputString();
-            if (tempContinue.equals("1"))
-                loop = true;
-            else
-                loop = false;
         }
-    }              // 관리자 ID가 맞지 않을때 다시입력받는 메서드
+        return checkReturn;
+    }
+    public boolean IDexist(String studentNumber) {
+
+        for (int i = 0; i < alist.size(); i++)
+            if (studentNumber.equals(alist.get(i).adminID))
+                return true;
+        return false;
+    }
+    public int IndexNumberOfID(String studentNumber) {
+
+        int tmpReturnValue = -1;
+        for (int i = 0; i < alist.size(); i++)
+            if (studentNumber.equals(alist.get(i).adminID)) {
+                tmpReturnValue++;
+                tmpReturnValue += i;
+            }
+        return tmpReturnValue;
+    }
+    public boolean checkPassword(int IndexNumberOfID, String password) {
+
+        if (this.password[IndexNumberOfID].equals(password))
+            return true;
+        else
+            return false;
+    }
+
+    public String fetchID() {
+        System.out.print("관리자 학번을 입력해주세요 : ");
+        return inputString();
+    }
+    public String fetchPassword() {
+        System.out.print("비밀번호를 입력해주세요 : ");
+        return inputString();
+    }
+
+    public void printWrongID() {
+        System.out.println();
+        System.out.println("관리자 학번이 아닙니다");
+        System.out.println("1.다시입력");
+        System.out.println("종료하려면 아무키나 누르세요");
+    }
+    public void printWrongPassword() {
+        count--;
+        System.out.println();
+        System.out.println("비밀번호가 틀렸습니다");
+        System.out.println("3회 이상 틀리면 자동종료 됩니다. 남은횟수 : " + count);
+    }
+
+    public String inputString() {
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
+    }
+    public int inputStringNumber() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
 }

@@ -8,7 +8,7 @@ public class Manager {
 
         Data.getInstance().loadDataFromFile();
 
-        boolean goOrStop = Administrators.checkAdmin();
+        boolean goOrStop = Administrators.loginStart();
 
         for (int i = 0; i < 15; i++)
             System.out.println();
