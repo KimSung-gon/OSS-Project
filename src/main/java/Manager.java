@@ -52,7 +52,7 @@ public class Manager {
                         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
                         int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
 
-                        Searching.searchDataOfStudent(studentIdx);
+                        Searching.searchDataOfStudent(studentIdx, StudentList.getInstance().slist);
                         CommonStaticMethod.returnMenu();
                         break;
                     }
@@ -62,7 +62,7 @@ public class Manager {
                     case 6: {
                         System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
                         String subject = CommonStaticMethod.inputString();
-                        int success = Searching.searchStudentDataOfSubject(subject);
+                        int success = Searching.searchStudentDataOfSubject(subject, StudentList.getInstance().slist);
                         if(success == 0)
                             System.out.println("해당하는과목이 없습니다. 과목명을 확인해주세요.");
                         CommonStaticMethod.returnMenu();
@@ -71,7 +71,7 @@ public class Manager {
                     case 7: {
                         System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
                         String major = CommonStaticMethod.inputString();
-                        int success = Searching.searchStudentDataOfMajor(major);
+                        int success = Searching.searchStudentDataOfMajor(major, StudentList.getInstance().slist);
                         if(success == 0)
                             System.out.println("해당하는 과가 없습니다. 전공명을 확인해주세요.");
                         CommonStaticMethod.returnMenu();
