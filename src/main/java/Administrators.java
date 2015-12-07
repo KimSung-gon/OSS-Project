@@ -7,15 +7,15 @@ public class Administrators {
     private final String adminID[] = {"20091130", "20103308", "20113300"};          // 관리자들 학번
     private final String password[] = {"dlaehdgns", "rlatjdrhs", "dbsaudtlr"};      // 관리자들 비밀번호(이름)
 
-    private static int count = 3;
-    private static boolean checkReturn;
-    private static String tmpContinue = "1";
+    private static int count = 3;                                                   // 비밀번호 입력 카운트
+    private static boolean checkReturn;                                             // 메뉴로 가기 또는 종료
+    private static String tmpContinue = "1";                                        // 아이디 입력 반복변수
 
     private Administrators() {
         alist = new ArrayList<>();
         for (int i = 0; i < adminID.length; i++)
             alist.add(new Administrator(adminID[i], password[i]));
-    }
+    }                                                   // alist에 admnID,password 추가
 
     public static boolean loginStart() {
 
@@ -28,12 +28,12 @@ public class Administrators {
             boolean tmpIDexist = admins.IDexist(adminID);
             int tmpIndexNumberOfID = admins.IndexNumberOfID(adminID);
 
-            admins.succeessLoginID(tmpIDexist, tmpIndexNumberOfID);
+            admins.loginIDLoop(tmpIDexist, tmpIndexNumberOfID);
         }
         return checkReturn;
-    }
+    }                                       // 로그인
 
-    public void succeessLoginID(boolean tmpIDexist, int tmpIndexNumberOfID) {
+    public void loginIDLoop(boolean tmpIDexist, int tmpIndexNumberOfID) {
 
         if (tmpIDexist == true) {
 
@@ -41,7 +41,7 @@ public class Administrators {
 
                 String adminPassword = fetchPassword();
                 boolean tmpAdminPassword = checkPassword(tmpIndexNumberOfID, adminPassword);
-                successLoginPassword(tmpAdminPassword);
+                loginPasswordLoop(tmpAdminPassword);
             }
 
         } else {
@@ -50,8 +50,8 @@ public class Administrators {
             for(int i=0; i<5; i++)
                 System.out.println();
         }
-    }
-    public boolean successLoginPassword(boolean tmpAdminPassword){
+    }        //  로그인아이디 매뉴얼
+    public boolean loginPasswordLoop(boolean tmpAdminPassword){
 
         if (tmpAdminPassword == true) {
             System.out.println("로그인 되었습니다");
@@ -65,14 +65,14 @@ public class Administrators {
             checkReturn = false;
         }
         return checkReturn;
-    }
+    }                  // 로그인비밀번호 매뉴얼
     public boolean IDexist(String studentNumber) {
 
         for (int i = 0; i < alist.size(); i++)
             if (studentNumber.equals(alist.get(i).adminID))
                 return true;
         return false;
-    }
+    }                                // 관리자확인
     public int IndexNumberOfID(String studentNumber) {
 
         int tmpReturnValue = -1;
@@ -82,43 +82,43 @@ public class Administrators {
                 tmpReturnValue += i;
             }
         return tmpReturnValue;
-    }
+    }                             // 관리자학번 인덱스값 리턴
     public boolean checkPassword(int IndexNumberOfID, String password) {
 
         if (this.password[IndexNumberOfID].equals(password))
             return true;
         else
             return false;
-    }
+    }         // 비밀번호 확인
 
     public String fetchID() {
         System.out.print("관리자 학번을 입력해주세요 : ");
         return inputString();
-    }
+    }                                                      // 관리자학번 받아오기
     public String fetchPassword() {
         System.out.print("비밀번호를 입력해주세요 : ");
         return inputString();
-    }
+    }                                                // 비밀번호 받아오기
 
     public void printWrongID() {
         System.out.println();
         System.out.println("관리자 학번이 아닙니다");
         System.out.println("1.다시입력");
         System.out.println("종료하려면 아무키나 누르세요");
-    }
+    }                                   // 아이디가 틀릴경우 출력문
     public void printWrongPassword() {
         count--;
         System.out.println();
         System.out.println("비밀번호가 틀렸습니다");
         System.out.println("3회 이상 틀리면 자동종료 됩니다. 남은횟수 : " + count);
-    }
+    }                             // 비밀번호가 틀릴경우 출력문
 
     public String inputString() {
         Scanner sc = new Scanner(System.in);
         return sc.next();
-    }
+    }                                   // String형 입력받기
     public int inputStringNumber() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
-    }
+    }                               // Int형 입력받기
 }
