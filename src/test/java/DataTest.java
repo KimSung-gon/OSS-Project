@@ -1,7 +1,62 @@
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class DataTest {
+
+    ArrayList<Student> testsList = new ArrayList<Student>();
+
+    public void setUp() {
+
+        ArrayList<String> testClass1 = new ArrayList<String>();
+        testClass1.add("모바일프로그래밍");
+        testClass1.add("선형대수");
+        testClass1.add("응용통계학");
+        testClass1.add("이산수학");
+        testsList.add(new Student(20110001, 24, "일번학생", "컴퓨터공학", testClass1));
+
+        ArrayList<String> testClass2 = new ArrayList<String>();
+        testClass2.add("미분과적분");
+        testClass2.add("선형대수");
+        testClass2.add("응용통계학");
+        testsList.add(new Student(20110002, 24, "이번학생", "수학", testClass2));
+
+        ArrayList<String> testClass3 = new ArrayList<String>();
+        testClass3.add("모바일프로그래밍");
+        testClass3.add("선형대수");
+        testClass3.add("응용통계학");
+        testClass3.add("이산수학");
+        testsList.add(new Student(20110003, 24, "삼번학생", "컴퓨터공학", testClass3));
+
+        ArrayList<String> testClass4 = new ArrayList<String>();
+        testClass3.add("모바일프로그래밍");
+        testClass3.add("선형대수");
+        testClass3.add("응용통계학");
+        testClass3.add("이산수학");
+        testsList.add(new Student(20100003, 24, "사번학생", "컴퓨터공학", testClass3));
+    }
+    @Test
+    public void saveStudentDataTest(){
+        setUp();
+        ArrayList<String> takeClass = new ArrayList<String>();
+        takeClass.add("OSS");
+        TestCase.assertEquals(1, Data.saveStudentData(20113300, 24, "윤명식", "컴퓨터공학", takeClass, testsList));
+    }
+
+    @Test
+    public void removeStudentDataTest(){
+        setUp();
+        TestCase.assertEquals(1, Data.removeStudentData(0, testsList));   // 삭제할 학생이 존재함
+        TestCase.assertEquals(-1, Data.removeStudentData(-1, testsList)); // 삭제할 학생이 존재하지 않음
+    }
+
+    @Test
+    public void removeStudentDataConfirm(){
+        setUp();
+        TestCase.assertEquals(0, Data.removeStudentDataConfirm(0,false, testsList)); // 삭제학생 존재할때, 삭제하지않음
+        TestCase.assertEquals(1, Data.removeStudentDataConfirm(0,true, testsList));  // 샂게학생 존재할떄, 삭제함
+    }
 
     @Test
     public void choiceSaveDataOrNot () {

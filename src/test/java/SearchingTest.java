@@ -8,7 +8,6 @@ public class SearchingTest {
 
     ArrayList<Student> testsList = new ArrayList<Student>();
 
-    @Test
     public void setUp() {
 
         ArrayList<String> testClass1 = new ArrayList<String>();

@@ -76,42 +76,9 @@ public class Data extends CommonStaticMethod {
         write.close();
     }             // 학생리스트를 텍스트파일에 저장
 
-    public static void saveStudentData() {
-
-        ArrayList<String> takeclass = new ArrayList<String>();
-        int studentID;
-        int age;
-        String name;
-        String major;
-
-        System.out.println("========== 1. 데이터 추가 ===========");
-        System.out.print("이름 : ");
-        name = inputString();
-
-        System.out.print("학번 : ");
-        studentID = inputInt();
-
-        System.out.print("나이 : ");
-        age = inputInt();
-
-        System.out.print("전공 : ");
-        major = inputString();
-
-        System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
-        int i = 1;
-
-        while (true) {
-            System.out.printf("수강중인 과목 %d : ", i);
-            String lecture = inputString();
-            if (lecture.compareTo("stop") == 0) {
-                break;
-            } else {
-                takeclass.add(lecture);
-                i++;
-            }
-        }
-        StudentList.getInstance().slist.add(new Student(studentID, age, name, major, takeclass));
-        System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1);
+    public static int saveStudentData(int studentID, int age, String name, String major, ArrayList<String> takeclass, ArrayList<Student> slist) {
+        slist.add(new Student(studentID, age, name, major, takeclass));
+        return 1;
     }                                // 학생리스트에 학생정보 저장
 
     public static void modifyStudentData() {
@@ -119,7 +86,8 @@ public class Data extends CommonStaticMethod {
         Scanner sc = new Scanner(System.in);
         int changeDataNumber;
         System.out.print("변경 할 학번을 입력하세요 : ");
-        int idx = searchStudentIdxNumberByStudentID(StudentList.getInstance());
+        int studentId = askStudentID();
+        int idx = searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
 
         if (idx == -1) {
             System.out.printf("입력하신 학번은 존재하지 않습니다");
@@ -149,30 +117,28 @@ public class Data extends CommonStaticMethod {
         }
     }                              // 학생리스트에 학생정보 변경
 
-    public static int removeStudentData(int idx) {
-
-        System.out.println("빠졋다2");
+    public static int removeStudentData(int idx, ArrayList<Student> slist) {
 
         if (idx == -1) {
             System.out.println("삭제할 학생이 없습니다.");
-            returnMenu();
             return -1;
         }
         else {
-            showStudentData(StudentList.getInstance().slist.get(idx));
+            showStudentData(slist.get(idx));
             return 1;
         }
     }
 
-    public static void removeStudentDataConfirm(int confirm, boolean choice){
+    public static int removeStudentDataConfirm(int idx, boolean choice, ArrayList<Student> slist){
 
         if ( choice ) {
-            StudentList.getInstance().slist.remove(confirm);
+            slist.remove(idx);
             System.out.println("삭제되었습니다.");
+            return 1;
         } else {
             System.out.println("삭제를 취소합니다.");
+            return 0;
         }
-        returnMenu();
     }                              // 학생리스트에 학생정보 삭제
 
 

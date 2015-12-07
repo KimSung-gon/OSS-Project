@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,7 +29,42 @@ public class Manager {
 
                 switch (select) {
                     case 1: {
-                        Data.getInstance().saveStudentData();
+                        ArrayList<String> takeclass = new ArrayList<String>();
+                        int studentID;
+                        int age;
+                        String name;
+                        String major;
+
+                        System.out.println("========== 1. 데이터 추가 ===========");
+                        System.out.print("이름 : ");
+                        name = CommonStaticMethod.inputString();
+
+                        System.out.print("학번 : ");
+                        studentID = CommonStaticMethod.inputInt();
+
+                        System.out.print("나이 : ");
+                        age = CommonStaticMethod.inputInt();
+
+                        System.out.print("전공 : ");
+                        major = CommonStaticMethod.inputString();
+
+                        System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
+                        int i = 1;
+
+                        while (true) {
+                            System.out.printf("수강중인 과목 %d : ", i);
+                            String lecture = CommonStaticMethod.inputString();
+                            if (lecture.compareTo("stop") == 0) {
+                                break;
+                            } else {
+                                takeclass.add(lecture);
+                                i++;
+                            }
+                        }
+
+                        System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1);
+
+                        Data.getInstance().saveStudentData(studentID, age, name, major, takeclass, StudentList.getInstance().slist);
                         break;
                     }
                     case 2: {
@@ -38,19 +74,21 @@ public class Manager {
                     case 3: {
 
                         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
-                        int idx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
-                        System.out.println("idx = " + idx);
+                        int studentId = CommonStaticMethod.askStudentID();
+                        int idx = CommonStaticMethod.searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
                         if(idx != -1) {
-                            int confirm = Data.getInstance().removeStudentData(idx);
+                            Data.getInstance().removeStudentData(idx, StudentList.getInstance().slist);
                             System.out.printf("삭제하시겠습니까?( y/n ) : ");
                             boolean choice = Data.choiceSaveDataOrNot( CommonStaticMethod.inputString() );
-                            Data.getInstance().removeStudentDataConfirm(confirm, choice);
+                            Data.getInstance().removeStudentDataConfirm(idx, choice, StudentList.getInstance().slist);
                         }
+                        CommonStaticMethod.returnMenu();
                         break;
                     }
                     case 4: {
                         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
-                        int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(StudentList.getInstance());
+                        int studentId = CommonStaticMethod.askStudentID();
+                        int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
 
                         Searching.searchDataOfStudent(studentIdx, StudentList.getInstance().slist);
                         CommonStaticMethod.returnMenu();

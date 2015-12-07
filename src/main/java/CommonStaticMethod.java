@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,11 +9,10 @@ public class CommonStaticMethod {
         return sc.nextInt();
     }                            // 학번을 입력받아 리턴
 
-    protected final static int searchStudentIdxNumberByStudentID( StudentList sList) {
+    protected final static int searchStudentIdxNumberByStudentID(int studentId, ArrayList<Student> slist) {
         // 못찾을시 -1 반환
-        int studentId = askStudentID();
-        for (int i = 0; i < sList.getInstance().slist.size(); i++) {
-            if (sList.getInstance().slist.get(i).studentID == studentId) {
+        for (int i = 0; i < slist.size(); i++) {
+            if (slist.get(i).studentID == studentId) {
                 return i;
             }
         }
@@ -50,10 +50,6 @@ public class CommonStaticMethod {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }                                 // 정수형을 입력받아 리턴
-
-    protected final static void returnFalseInputMessage() {
-        System.out.println("잘못된 입력입니다.");
-    }
 
     protected final static void returnMenu(){
         System.out.print("메뉴로 돌아가려면 아무 키나 입력하세요 : ");
