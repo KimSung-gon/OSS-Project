@@ -37,7 +37,7 @@ public class Administrators {
 
         if (tmpIDexist == true) {
 
-            while( count > 0 ) {
+            while (count > 0) {
 
                 String adminPassword = fetchPassword();
                 boolean tmpAdminPassword = checkPassword(tmpIndexNumberOfID, adminPassword);
@@ -47,11 +47,12 @@ public class Administrators {
         } else {
             printWrongID();
             tmpContinue = inputString();
-            for(int i=0; i<5; i++)
+            for (int i = 0; i < 5; i++)
                 System.out.println();
         }
     }        //  로그인아이디 매뉴얼
-    public boolean loginPasswordLoop(boolean tmpAdminPassword){
+
+    public boolean loginPasswordLoop(boolean tmpAdminPassword) {
 
         if (tmpAdminPassword == true) {
             System.out.println("로그인 되었습니다");
@@ -66,6 +67,7 @@ public class Administrators {
         }
         return checkReturn;
     }                  // 로그인비밀번호 매뉴얼
+
     public boolean IDexist(String studentNumber) {
 
         for (int i = 0; i < alist.size(); i++)
@@ -73,6 +75,7 @@ public class Administrators {
                 return true;
         return false;
     }                                // 관리자확인
+
     public int IndexNumberOfID(String studentNumber) {
 
         int tmpReturnValue = -1;
@@ -83,6 +86,7 @@ public class Administrators {
             }
         return tmpReturnValue;
     }                             // 관리자학번 인덱스값 리턴
+
     public boolean checkPassword(int IndexNumberOfID, String password) {
 
         if (this.password[IndexNumberOfID].equals(password))
@@ -95,6 +99,7 @@ public class Administrators {
         System.out.print("관리자 학번을 입력해주세요 : ");
         return inputString();
     }                                                      // 관리자학번 받아오기
+
     public String fetchPassword() {
         System.out.print("비밀번호를 입력해주세요 : ");
         return inputString();
@@ -106,6 +111,7 @@ public class Administrators {
         System.out.println("1.다시입력");
         System.out.println("종료하려면 아무키나 누르세요");
     }                                   // 아이디가 틀릴경우 출력문
+
     public void printWrongPassword() {
         count--;
         System.out.println();
@@ -117,6 +123,7 @@ public class Administrators {
         Scanner sc = new Scanner(System.in);
         return sc.next();
     }                                   // String형 입력받기
+
     public int inputStringNumber() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
