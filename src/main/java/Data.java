@@ -81,39 +81,34 @@ public class Data extends CommonStaticMethod {
         return 1;
     }                                // 학생리스트에 학생정보 저장
 
-    public static void modifyStudentData() {
+    public static int modifyStudentData(int studentId, ArrayList<Student> slist) {
 
-        Scanner sc = new Scanner(System.in);
-        int changeDataNumber;
-        System.out.print("변경 할 학번을 입력하세요 : ");
-        int studentId = askStudentID();
-        int idx = searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
+        int idx = searchStudentIdxNumberByStudentID(studentId, slist);
 
         if (idx == -1) {
             System.out.printf("입력하신 학번은 존재하지 않습니다");
-            return;
+            return -1;
         }
+        return idx;
+    }
 
-        while (true) {
-            showWayToModify();
-            changeDataNumber = sc.nextInt();
+    public static int modifyStudentDataInfo(int idx, int changeDataNumber, int ageToChange, String nameToChange, String majorToChange, ArrayList<Student> slist) {
 
-            switch (changeDataNumber) {
-                case 1:
-                    modifyStudentAge(idx);
-                    break;
-                case 2:
-                    modifyStudentName(idx);
-                    break;
-                case 3:
-                    modifyStudentMajor(idx);
-                    break;
-                case 4:
-                    modifyTakingClass(idx);
-                    break;
-                default:
-                    return;
-            }
+        switch (changeDataNumber) {
+            case 1:
+                modifyStudentAge(idx, ageToChange, slist);
+                return 1;
+            case 2:
+                modifyStudentName(idx, nameToChange, slist);
+                return 2;
+            case 3:
+                modifyStudentMajor(idx, majorToChange, slist);
+                return 3;
+            case 4:
+                modifyTakingClass(idx, slist);
+                return 4;
+            default:
+                return 0;
         }
     }                              // 학생리스트에 학생정보 변경
 
@@ -122,16 +117,15 @@ public class Data extends CommonStaticMethod {
         if (idx == -1) {
             System.out.println("삭제할 학생이 없습니다.");
             return -1;
-        }
-        else {
+        } else {
             showStudentData(slist.get(idx));
             return 1;
         }
     }
 
-    public static int removeStudentDataConfirm(int idx, boolean choice, ArrayList<Student> slist){
+    public static int removeStudentDataConfirm(int idx, boolean choice, ArrayList<Student> slist) {
 
-        if ( choice ) {
+        if (choice) {
             slist.remove(idx);
             System.out.println("삭제되었습니다.");
             return 1;
@@ -146,7 +140,7 @@ public class Data extends CommonStaticMethod {
      * 아래부터는 정보은닉된 메소드입니다.
      *****************/
 
-    private static void showWayToModify() {
+    public static void showWayToModify() {
         System.out.println("====================");
         System.out.println("데이터 수정");
         System.out.println("1.나이");
@@ -158,62 +152,52 @@ public class Data extends CommonStaticMethod {
         System.out.print("수정할 데이터 번호를 입력하세요 : ");
     }
 
-    static boolean choiceSaveDataOrNot( String s ) {
+    static boolean choiceSaveDataOrNot(String s) {
 
-        if ( s.compareTo( "y" ) == 0 ||
-                s.compareTo( "Y" ) == 0 ||
-                s.compareTo( "yes" ) == 0 ||
-                s.compareTo( "Yes" ) == 0 ||
-                s.compareTo( "YES" ) == 0 )
+        if (s.compareTo("y") == 0 ||
+                s.compareTo("Y") == 0 ||
+                s.compareTo("yes") == 0 ||
+                s.compareTo("Yes") == 0 ||
+                s.compareTo("YES") == 0)
             return true;
         else
             return false;
     }
 
-    private static void modifyStudentAge(int idx) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
-        System.out.print("변경할 나이를 입력하세요 : ");
-        int ageToChange = sc.nextInt();
-        StudentList.getInstance().slist.get(idx).age = ageToChange;
+    public static boolean modifyStudentAge(int idx, int ageToChange, ArrayList<Student> slist) {
+        slist.get(idx).age = ageToChange;
+        return true;
     }
 
-    private static void modifyStudentName(int idx) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
-        System.out.print("변경할 이름을 입력하세요 : ");
-        String nameToChange = sc.next();
-        StudentList.getInstance().slist.get(idx).name = nameToChange;
+    public static boolean modifyStudentName(int idx, String nameToChange, ArrayList<Student> slist) {
+        slist.get(idx).name = nameToChange;
+        return true;
     }
 
-    private static void modifyStudentMajor(int idx) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
-        System.out.print("변경할 전공을 입력하세요 : ");
-        String majorToChange = sc.next();
-        StudentList.getInstance().slist.get(idx).major = majorToChange;
+    public static boolean modifyStudentMajor(int idx, String majorToChange, ArrayList<Student> slist) {
+        slist.get(idx).major = majorToChange;
+        return true;
     }
 
-    private static void modifyTakingClass(int idx) {
-        Scanner sc = new Scanner(System.in);
+    private static void modifyTakingClass(int idx, ArrayList<Student> slist) {
         while (true) {
             System.out.println("현재 수강중인 과목 : ");
-            for (int j = 0; j < StudentList.getInstance().slist.get(idx).takingClass.size(); j++)
-                System.out.println(StudentList.getInstance().slist.get(idx).takingClass.get(j));
+            for (int j = 0; j < slist.get(idx).takingClass.size(); j++)
+                System.out.println(slist.get(idx).takingClass.get(j));
             System.out.println("1.추가    2.삭제    3.나가기");
             System.out.print("실행 할 번호를 입력하세요 : ");
-            int addOrRemoveOrModify = sc.nextInt();
+            int addOrRemoveOrModify = inputInt();
 
             switch (addOrRemoveOrModify) {
                 case 1:
                     System.out.print("추가 할 과목을 입력하세요 : ");
-                    String addSubject = sc.next();
-                    StudentList.getInstance().slist.get(idx).takingClass.add(addSubject);
+                    String addSubject = inputString();
+                    slist.get(idx).takingClass.add(addSubject);
                     break;
                 case 2:
                     System.out.print("삭제 할 과목을 입력하세요 : ");
-                    String removeSubject = sc.next();
-                    StudentList.getInstance().slist.get(idx).takingClass.remove(removeSubject);
+                    String removeSubject = inputString();
+                    slist.get(idx).takingClass.remove(removeSubject);
                     break;
                 case 3:
                     returnMenu();
