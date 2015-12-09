@@ -6,8 +6,7 @@ public class Searching extends CommonStaticMethod {
         if (studentIdx == -1) {
             System.out.println("조회되는 학번이 없습니다.");
             return 0;
-        }
-        else
+        } else
             showdata(slist.get(studentIdx));
         return 1;
     }                  // 학번을 통한 정보 검색 (성공 : 1 , 실패 : 0)
@@ -18,7 +17,6 @@ public class Searching extends CommonStaticMethod {
             showdata(StudentList.getInstance().slist.get(i));
 
         System.out.println("\n총 학생 수 : " + StudentList.getInstance().slist.size());
-        returnMenu();
     }                          // 전체 학생수, 모든 학생데이터 출력
 
     public static void showdata(Student student) {
@@ -44,13 +42,13 @@ public class Searching extends CommonStaticMethod {
                     showStudentIdAndName(slist.get(i));
                     count++;
                 }
-        if(count == 0)
+        if (count == 0)
             return 0;
         else
             return 1;
     }           // 과목을 통한 정보 검색 (성공 : 1 , 실패 : 0)
 
-    public static int searchStudentDataOfMajor(String major , ArrayList<Student> slist) {
+    public static int searchStudentDataOfMajor(String major, ArrayList<Student> slist) {
 
         int count = 0;
         for (int i = 0; i < slist.size(); i++)
@@ -58,7 +56,7 @@ public class Searching extends CommonStaticMethod {
                 showStudentIdAndName(slist.get(i));
                 count++;
             }
-        if(count == 0)
+        if (count == 0)
             return 0;
         else
             return 1;
@@ -68,11 +66,11 @@ public class Searching extends CommonStaticMethod {
 
         int count = 0;
         for (int i = 0; i < slist.size(); i++)
-            if ( slist.get(i).studentID / 10000 == selectedYear ) {
+            if (slist.get(i).studentID / 10000 == selectedYear) {
                 showStudentIdAndName(slist.get(i));
                 count++;
             }
-        if(count == 0)
+        if (count == 0)
             return 0;
         else
             return 1;

@@ -81,4 +81,11 @@ public class SearchingTest {
         TestCase.assertEquals(0, Searching.searchDataOfYear(12341245, testsList));
     }
 
+    @Test
+    public void showAllDataTest() {
+
+        setUp();
+        Searching.showAllData();
+    }
+
 }
