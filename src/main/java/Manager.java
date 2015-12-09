@@ -68,7 +68,39 @@ public class Manager {
                         break;
                     }
                     case 2: {
-                        Data.getInstance().modifyStudentData();
+
+                        System.out.print("변경 할 학번을 입력하세요 : ");
+                        int studentId = CommonStaticMethod.askStudentID();
+
+                        int idx = Data.getInstance().modifyStudentData(studentId, StudentList.getInstance().slist);
+
+
+                        while (true) {
+                            Data.showWayToModify();
+                            int changeDataNumber = CommonStaticMethod.inputInt();
+                            int ageToChange = -1;
+                            String nameToChange = "";
+                            String majorToChange = "";
+
+                            if (changeDataNumber == 1) {
+                                System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
+                                System.out.print("변경할 나이를 입력하세요 : ");
+                                ageToChange = CommonStaticMethod.inputInt();
+                            } else if (changeDataNumber == 2) {
+                                System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
+                                System.out.print("변경할 이름을 입력하세요 : ");
+                                nameToChange = CommonStaticMethod.inputString();
+                            } else if (changeDataNumber == 3) {
+                                System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
+                                System.out.print("변경할 전공을 입력하세요 : ");
+                                majorToChange = CommonStaticMethod.inputString();
+                            }
+
+                            int close = Data.getInstance().modifyStudentDataInfo(idx, changeDataNumber, ageToChange, nameToChange, majorToChange, StudentList.getInstance().slist);
+
+                            if (close == 0)
+                                break;
+                        }
                         break;
                     }
                     case 3: {
@@ -76,10 +108,10 @@ public class Manager {
                         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
                         int studentId = CommonStaticMethod.askStudentID();
                         int idx = CommonStaticMethod.searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
-                        if(idx != -1) {
+                        if (idx != -1) {
                             Data.getInstance().removeStudentData(idx, StudentList.getInstance().slist);
                             System.out.printf("삭제하시겠습니까?( y/n ) : ");
-                            boolean choice = Data.choiceSaveDataOrNot( CommonStaticMethod.inputString() );
+                            boolean choice = Data.choiceSaveDataOrNot(CommonStaticMethod.inputString());
                             Data.getInstance().removeStudentDataConfirm(idx, choice, StudentList.getInstance().slist);
                         }
                         CommonStaticMethod.returnMenu();
@@ -96,12 +128,13 @@ public class Manager {
                     }
                     case 5:
                         Searching.showAllData();
+                        CommonStaticMethod.returnMenu();
                         break;
                     case 6: {
                         System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
                         String subject = CommonStaticMethod.inputString();
                         int success = Searching.searchStudentDataOfSubject(subject, StudentList.getInstance().slist);
-                        if(success == 0)
+                        if (success == 0)
                             System.out.println("해당하는과목이 없습니다. 과목명을 확인해주세요.");
                         CommonStaticMethod.returnMenu();
                         break;
@@ -110,16 +143,16 @@ public class Manager {
                         System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
                         String major = CommonStaticMethod.inputString();
                         int success = Searching.searchStudentDataOfMajor(major, StudentList.getInstance().slist);
-                        if(success == 0)
+                        if (success == 0)
                             System.out.println("해당하는 과가 없습니다. 전공명을 확인해주세요.");
                         CommonStaticMethod.returnMenu();
                         break;
                     }
-                    case 8:{
+                    case 8: {
                         System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
                         int year = Integer.parseInt(CommonStaticMethod.inputStringNumber());
                         int success = Searching.searchDataOfYear(year, StudentList.getInstance().slist);
-                        if(success == 0)
+                        if (success == 0)
                             System.out.println("해당하는 입학년도가 없습니다. 입학년도를 확인해주세요.");
                         CommonStaticMethod.returnMenu();
                         break;
@@ -130,8 +163,7 @@ public class Manager {
                 Data.getInstance().saveDataToFile();
                 if (select == 9)
                     return;
-            }
-            catch (InputMismatchException ex) {
+            } catch (InputMismatchException ex) {
                 System.out.println("인풋 미스매치");
 
             } catch (NumberFormatException ex) {
