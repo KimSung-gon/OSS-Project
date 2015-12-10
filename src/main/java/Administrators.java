@@ -11,8 +11,8 @@ public class Administrators {
     private static boolean checkReturn;                                             // 메뉴로 가기 또는 종료
     private static String tmpContinue = "1";                                        // 아이디 입력 반복변수
 
-    private Administrators() {
-        alist = new ArrayList<>();
+    Administrators() {
+        alist = new ArrayList<Administrator>();
         for (int i = 0; i < adminID.length; i++)
             alist.add(new Administrator(adminID[i], password[i]));
     }                                                   // alist에 admnID,password 추가
@@ -33,7 +33,7 @@ public class Administrators {
         return checkReturn;
     }                                       // 로그인
 
-    public void loginIDLoop(boolean tmpIDexist, int tmpIndexNumberOfID) {
+    public String loginIDLoop(boolean tmpIDexist, int tmpIndexNumberOfID) {
 
         if (tmpIDexist == true) {
 
@@ -46,10 +46,15 @@ public class Administrators {
 
         } else {
             printWrongID();
-            tmpContinue = inputString();
+            String tmpStr = inputString();
+            if(tmpContinue.equals(tmpStr))
+                tmpContinue = tmpStr;
+            else
+                tmpContinue = "0";
             for (int i = 0; i < 5; i++)
                 System.out.println();
         }
+        return tmpContinue;
     }        //  로그인아이디 매뉴얼
 
     public boolean loginPasswordLoop(boolean tmpAdminPassword) {
