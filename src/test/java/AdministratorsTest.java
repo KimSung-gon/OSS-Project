@@ -26,6 +26,7 @@ public class AdministratorsTest {
     @Test
     public void IDexistTest() {
 
+        TestCase.assertTrue(admin.IDexist("fharenheit"));
         TestCase.assertTrue(admin.IDexist("20091130"));
         TestCase.assertTrue(admin.IDexist("20103308"));
         TestCase.assertTrue(admin.IDexist("20113300"));
@@ -45,9 +46,10 @@ public class AdministratorsTest {
     @Test
     public void IndexNumberOfIDTest() {
 
-        TestCase.assertEquals(0, admin.IndexNumberOfID("20091130"));
-        TestCase.assertEquals(1, admin.IndexNumberOfID("20103308"));
-        TestCase.assertEquals(2, admin.IndexNumberOfID("20113300"));
+        TestCase.assertEquals(0, admin.IndexNumberOfID("fharenheit"));
+        TestCase.assertEquals(1, admin.IndexNumberOfID("20091130"));
+        TestCase.assertEquals(2, admin.IndexNumberOfID("20103308"));
+        TestCase.assertEquals(3, admin.IndexNumberOfID("20113300"));
 
         TestCase.assertEquals(-1, admin.IndexNumberOfID("20000000"));
         TestCase.assertEquals(-1, admin.IndexNumberOfID("123213"));
@@ -62,25 +64,35 @@ public class AdministratorsTest {
     @Test
     public void checkPasswordTest() {
 
-        TestCase.assertTrue(admin.checkPassword(0, "dlaehdgns"));
-        TestCase.assertFalse(admin.checkPassword(1, "dlaehdgns"));
+        TestCase.assertTrue(admin.checkPassword(0, "rlaqudrhs"));
+        TestCase.assertFalse(admin.checkPassword(1, "rlaqudrhs"));
+        TestCase.assertFalse(admin.checkPassword(2, "rlaqudrhs"));
+        TestCase.assertFalse(admin.checkPassword(3, "rlaqudrhs"));
+
+        TestCase.assertFalse(admin.checkPassword(0, "dlaehdgns"));
+        TestCase.assertTrue(admin.checkPassword(1, "dlaehdgns"));
         TestCase.assertFalse(admin.checkPassword(2, "dlaehdgns"));
+        TestCase.assertFalse(admin.checkPassword(3, "dlaehdgns"));
 
         TestCase.assertFalse(admin.checkPassword(0, "rlatjdrhs"));
-        TestCase.assertTrue(admin.checkPassword(1, "rlatjdrhs"));
-        TestCase.assertFalse(admin.checkPassword(2, "rlatjdrhs"));
+        TestCase.assertFalse(admin.checkPassword(1, "rlatjdrhs"));
+        TestCase.assertTrue(admin.checkPassword(2, "rlatjdrhs"));
+        TestCase.assertFalse(admin.checkPassword(3, "rlatjdrhs"));
 
         TestCase.assertFalse(admin.checkPassword(0, "dbsaudtlr"));
         TestCase.assertFalse(admin.checkPassword(1, "dbsaudtlr"));
-        TestCase.assertTrue(admin.checkPassword(2, "dbsaudtlr"));
+        TestCase.assertFalse(admin.checkPassword(2, "dbsaudtlr"));
+        TestCase.assertTrue(admin.checkPassword(3, "dbsaudtlr"));
 
         TestCase.assertFalse(admin.checkPassword(0, "abcdefgh"));
         TestCase.assertFalse(admin.checkPassword(1, "abcdefgh"));
         TestCase.assertFalse(admin.checkPassword(2, "abcdefgh"));
+        TestCase.assertFalse(admin.checkPassword(3, "abcdefgh"));
 
-        TestCase.assertFalse(admin.checkPassword(0, "20091130"));
-        TestCase.assertFalse(admin.checkPassword(1, "20103308"));
-        TestCase.assertFalse(admin.checkPassword(2, "20113300"));
+        TestCase.assertFalse(admin.checkPassword(0, "fharenheit"));
+        TestCase.assertFalse(admin.checkPassword(1, "20091130"));
+        TestCase.assertFalse(admin.checkPassword(2, "20103308"));
+        TestCase.assertFalse(admin.checkPassword(3, "20113300"));
 
     }         // 비밀번호 확인
 }

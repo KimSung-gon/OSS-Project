@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Administrators {
 
     private static ArrayList<Administrator> alist;
-    private final String adminID[] = {"20091130", "20103308", "20113300"};          // 관리자들 학번
-    private final String password[] = {"dlaehdgns", "rlatjdrhs", "dbsaudtlr"};      // 관리자들 비밀번호(이름)
+    private final String adminID[] = {"fharenheit", "20091130", "20103308", "20113300"};          // 관리자들 학번
+    private final String password[] = {"rlaqudrhs", "dlaehdgns", "rlatjdrhs", "dbsaudtlr"};      // 관리자들 비밀번호(이름)
 
     private static int count = 3;                                                   // 비밀번호 입력 카운트
     private static boolean checkReturn;                                             // 메뉴로 가기 또는 종료
