@@ -76,8 +76,43 @@ public class Data extends CommonStaticMethod {
         write.close();
     }             // 학생리스트를 텍스트파일에 저장
 
-    public static int saveStudentData(int studentID, int age, String name, String major, ArrayList<String> takeclass, ArrayList<Student> slist) {
-        slist.add(new Student(studentID, age, name, major, takeclass));
+    public static int saveStudentData() {
+        ArrayList<String> takeclass = new ArrayList<String>();
+        int studentID;
+        int age;
+        String name;
+        String major;
+
+        System.out.println("========== 1. 데이터 추가 ===========");
+        System.out.print("이름 : ");
+        name = CommonStaticMethod.inputString();
+
+        System.out.print("학번 : ");
+        studentID = CommonStaticMethod.inputInt();
+
+        System.out.print("나이 : ");
+        age = CommonStaticMethod.inputInt();
+
+        System.out.print("전공 : ");
+        major = CommonStaticMethod.inputString();
+
+        System.out.println("과목 입력을 멈추시려면 \"stop\"을 입력해 주세요.");
+        int i = 1;
+
+        while (true) {
+            System.out.printf("수강중인 과목 %d : ", i);
+            String lecture = CommonStaticMethod.inputString();
+            if (lecture.compareTo("stop") == 0) {
+                break;
+            } else {
+                takeclass.add(lecture);
+                i++;
+            }
+        }
+
+        StudentList.getInstance().slist.add(new Student(studentID, age, name, major, takeclass));
+
+        System.out.printf("현재 수강중인 과목(%d개) 저장되었습니다", i - 1);
         return 1;
     }                                // 학생리스트에 학생정보 저장
 
