@@ -27,4 +27,4 @@ ID : 20113300           Password : dbsaudtlr ( 윤명식 영어로 )
 
  프로그램을 시작하면 studentList.txt에서 파일을 불러와서 StudentList에 저장한다
  1~9번 프로그램을 실행하면 StudentList에 저장된 파일들로 추가, 수정, 삭제, 검색을 하고
- 1~9번 메서드가 를 나가기 전에 StudentList에 저장된 파일을 다시 studentList.txt에 저장한다.
+ 1~9번 메서드가 를 완료된 후 전에 StudentList에 저장된 파일을 다시 studentList.txt에 저장한다.
