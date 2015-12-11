@@ -27,38 +27,38 @@ public class Manager {
 
 
                 switch (select) {
-                    case 1: {
+                    case 1:
                         saveData();
                         break;
-                    }
-                    case 2: {
+
+                    case 2:
                         modifyData();
                         break;
-                    }
-                    case 3: {
+
+                    case 3:
                         deleteData();
                         break;
-                    }
-                    case 4: {
+
+                    case 4:
                         findDataByStudentId();
                         break;
-                    }
+
                     case 5:
                         Searching.showAllData();
                         CommonStaticMethod.returnMenu();
                         break;
-                    case 6: {
+                    case 6:
                         findDataByClass();
                         break;
-                    }
-                    case 7: {
+
+                    case 7:
                         findDataByMajor();
                         break;
-                    }
-                    case 8: {
+
+                    case 8:
                         findDataByYear();
                         break;
-                    }
+
                     case 9:
                         break;
                 }
@@ -75,7 +75,7 @@ public class Manager {
         }
     }
 
-    public static void showMainMenu() {
+    private static void showMainMenu() {
 
         for (int i = 0; i < 1; i++) {
             System.out.println();
@@ -95,7 +95,7 @@ public class Manager {
         System.out.printf("선택 : ");
     }
 
-    public static void saveData(){
+    private static void saveData(){
         ArrayList<String> takeclass = new ArrayList<String>();
         int studentID;
         int age;
@@ -134,7 +134,7 @@ public class Manager {
         Data.getInstance().saveStudentData(studentID, age, name, major, takeclass, StudentList.getInstance().slist);
     }
 
-    public static void modifyData(){
+    private static void modifyData(){
 
         System.out.print("변경 할 학번을 입력하세요 : ");
         int studentId = CommonStaticMethod.askStudentID();
@@ -149,29 +149,34 @@ public class Manager {
             String nameToChange = "";
             String majorToChange = "";
 
-            if (changeDataNumber == 1) {
-                System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
-                System.out.print("변경할 나이를 입력하세요 : ");
-                ageToChange = CommonStaticMethod.inputInt();
-            } else if (changeDataNumber == 2) {
-                System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
-                System.out.print("변경할 이름을 입력하세요 : ");
-                nameToChange = CommonStaticMethod.inputString();
-            } else if (changeDataNumber == 3) {
-                System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
-                System.out.print("변경할 전공을 입력하세요 : ");
-                majorToChange = CommonStaticMethod.inputString();
+            switch ( changeDataNumber ) {
+                case 1:
+                    System.out.println("현재 나이 : " + StudentList.getInstance().slist.get(idx).age);
+                    System.out.print("변경할 나이를 입력하세요 : ");
+                    ageToChange = CommonStaticMethod.inputInt();
+                    break;
+
+                case 2:
+                    System.out.println("현재 이름 : " + StudentList.getInstance().slist.get(idx).name);
+                    System.out.print("변경할 이름을 입력하세요 : ");
+                    nameToChange = CommonStaticMethod.inputString();
+                    break;
+
+
+                case 3:
+                    System.out.println("현재 전공 : " + StudentList.getInstance().slist.get(idx).major);
+                    System.out.print("변경할 전공을 입력하세요 : ");
+                    majorToChange = CommonStaticMethod.inputString();
+                    break;
             }
-
             int close = Data.getInstance().modifyStudentDataInfo(idx, changeDataNumber, ageToChange, nameToChange, majorToChange, StudentList.getInstance().slist);
-
             if (close == 0)
                 break;
         }
 
     }
 
-    public static void deleteData(){
+    private static void deleteData(){
 
         System.out.print("지우고자 하는 학생의 학번을 입력해 주세요 : ");
         int studentId = CommonStaticMethod.askStudentID();
@@ -186,7 +191,7 @@ public class Manager {
 
     }
 
-    public static void findDataByStudentId(){
+    private static void findDataByStudentId(){
         System.out.println("찾고자 하는 학생의 학번을 입력해 주세요 : ");
         int studentId = CommonStaticMethod.askStudentID();
         int studentIdx = CommonStaticMethod.searchStudentIdxNumberByStudentID(studentId, StudentList.getInstance().slist);
@@ -196,7 +201,7 @@ public class Manager {
 
     }
 
-    public static void findDataByClass(){
+    private static void findDataByClass(){
         System.out.print("찾고자 하는 과목명을 입력해 주세요 : ");
         String subject = CommonStaticMethod.inputString();
         int success = Searching.searchStudentDataOfSubject(subject, StudentList.getInstance().slist);
@@ -206,7 +211,7 @@ public class Manager {
 
     }
 
-    public static void findDataByMajor(){
+    private static void findDataByMajor(){
         System.out.print("찾고자 하는 전공명을 입력해 주세요 : ");
         String major = CommonStaticMethod.inputString();
         int success = Searching.searchStudentDataOfMajor(major, StudentList.getInstance().slist);
@@ -216,7 +221,7 @@ public class Manager {
 
     }
 
-    public static void findDataByYear(){
+    private static void findDataByYear(){
         System.out.print("찾고자 하는 입학년도를 네자리로 입력해 주세요 : ");
         int year = Integer.parseInt(CommonStaticMethod.inputStringNumber());
         int success = Searching.searchDataOfYear(year, StudentList.getInstance().slist);
@@ -224,4 +229,9 @@ public class Manager {
             System.out.println("해당하는 입학년도가 없습니다. 입학년도를 확인해주세요.");
         CommonStaticMethod.returnMenu();
     }
+
+
+
+
+
 }
