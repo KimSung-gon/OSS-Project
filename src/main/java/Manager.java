@@ -95,6 +95,12 @@ public class Manager {
         System.out.printf("선택 : ");
     }
 
+    /****************************************************************************************
+     *
+     *      아래 부터는 위의 매뉴얼에 스위치문의 각 부분 대한 메소드의 구현부분입니다
+     *
+     *****************************************************************************************/
+
     private static void saveData(){
         ArrayList<String> takeclass = new ArrayList<String>();
         int studentID;
